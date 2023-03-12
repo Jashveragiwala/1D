@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CEE4F8"
+    android:padding="100px"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:gravity="center">
+
+
+    <TextView
+        android:id="@+id/name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Journeys "
+        android:padding="0dp"
+        android:textColor="#032256"
+        android:textSize="60dp"
+
+        />
+
+    <Button
+        android:id="@+id/journey2"
+        android:background="@drawable/button"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Add Journey"
+        android:textSize="25dp"
+        android:layout_marginTop="200dp"
+        />
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/button3"
+        android:isScrollContainer="false">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button2"
+            android:padding="5dp"
+            app:icon="@drawable/home"
+            app:iconSize="40dp" />
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/button2"
+            android:padding="5dp"
+            app:icon="@drawable/nav"
+            app:iconSize="40dp" />
+    </TableRow>
+
+
+</LinearLayout>
