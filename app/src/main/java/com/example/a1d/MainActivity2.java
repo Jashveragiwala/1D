@@ -13,6 +13,8 @@ public class MainActivity2 extends AppCompatActivity {
     Button ButtonA;
     Button ButtonB;
     Button ButtonC;
+    Button ButtonD;
+    Button ButtonE;
     TextView txtView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +24,8 @@ public class MainActivity2 extends AppCompatActivity {
         ButtonA = (Button) findViewById(R.id.journey2);
         ButtonB = (Button) findViewById(R.id.button3);
         ButtonC = (Button) findViewById(R.id.button4);
-
+        ButtonD = (Button) findViewById(R.id.journeys1);
+        ButtonE = (Button) findViewById(R.id.journeys2);
         ButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -43,6 +46,22 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity2.this,MainActivity2.class);
+                startActivity(intent);
+            }}
+        );
+
+        ButtonD.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity2.this,MainActivity5.class);
+                startActivity(intent);
+            }}
+        );
+
+        ButtonE.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity2.this,MainActivity5.class);
                 startActivity(intent);
             }}
         );

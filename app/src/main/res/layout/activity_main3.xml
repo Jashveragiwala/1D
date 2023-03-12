@@ -36,9 +36,10 @@
         android:textColor="#032256"
         android:padding="2sp"
         android:hint="Enter Country of Visit"
-        android:textColorHint="#95032256"
+        android:textColorHint="#18C0C1"
         android:layout_marginTop="10sp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        />
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="match_parent"
@@ -50,9 +51,11 @@
         android:textColor="#032256"
         android:padding="2sp"
         android:hint="Enter Name for your Itinerary"
-        android:textColorHint="#95032256"
+        android:textColorHint="#18C0C1"
         android:layout_marginTop="10sp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+
+        />
 
 
     <Button
