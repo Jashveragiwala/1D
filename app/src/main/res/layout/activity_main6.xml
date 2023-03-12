@@ -4,39 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".MainActivity6"
     android:background="#CEE4F8"
     android:padding="40sp"
     android:orientation="vertical"
-    tools:context=".MainActivity2"
     android:gravity="center">
 
-
     <TextView
-        android:id="@+id/name2"
+        android:id="@+id/name6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Journeys "
+        android:text="Day # "
         android:padding="0sp"
         android:textColor="#032256"
-        android:textSize="60sp"
-
-        />
-
-    <Button
-        android:id="@+id/journey2"
-        android:background="@drawable/button"
-        android:layout_width="250sp"
-        android:layout_height="wrap_content"
-        android:text="Add Journey"
-        android:textSize="25sp"
-        android:layout_marginTop="200sp"
+        android:textSize="40sp"
+        android:textAlignment="center"
         />
 
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="fill_parent"
         android:layout_height="60sp"
-        android:layout_marginTop="90sp"
+        android:layout_marginTop="300sp"
         android:background="@drawable/button3"
         android:isScrollContainer="false">
 
@@ -61,6 +50,5 @@
             app:icon="@drawable/nav"
             app:iconSize="40sp" />
     </TableRow>
-
 
 </LinearLayout>
