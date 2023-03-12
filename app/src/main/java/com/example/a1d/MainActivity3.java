@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity2 extends AppCompatActivity {
-
+public class MainActivity3 extends AppCompatActivity {
     Button ButtonA;
     Button ButtonB;
     Button ButtonC;
@@ -17,24 +16,16 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
-        txtView = (TextView) findViewById(R.id.name2);
-        ButtonA = (Button) findViewById(R.id.journey2);
+        setContentView(R.layout.activity_main3);
+        txtView = (TextView) findViewById(R.id.name3);
+        ButtonA = (Button) findViewById(R.id.done);
         ButtonB = (Button) findViewById(R.id.button3);
         ButtonC = (Button) findViewById(R.id.button4);
-
-        ButtonA.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(MainActivity2.this,MainActivity3.class);
-                startActivity(intent);
-            }}
-        );
 
         ButtonB.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity2.this,MainActivity.class);
+                Intent intent = new Intent(MainActivity3.this,MainActivity.class);
                 startActivity(intent);
             }}
         );
@@ -42,7 +33,7 @@ public class MainActivity2 extends AppCompatActivity {
         ButtonC.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity2.this,MainActivity2.class);
+                Intent intent = new Intent(MainActivity3.this,MainActivity2.class);
                 startActivity(intent);
             }}
         );

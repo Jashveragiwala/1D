@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CEE4F8"
-    android:padding="100px"
+    android:padding="40sp"
     android:orientation="vertical"
     tools:context=".MainActivity"
     android:gravity="center">
@@ -16,26 +16,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Navit "
-        android:padding="0dp"
+        android:padding="0sp"
         android:textColor="#032256"
-        android:textSize="60dp"
+        android:textSize="60sp"
 
         />
     <ImageView
         android:layout_marginTop="20dp"
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="200sp"
         app:srcCompat="@drawable/mainlogo" />
 
     <Button
         android:id="@+id/button2"
         android:background="@drawable/button"
-        android:layout_width="250dp"
+        android:layout_width="250sp"
         android:layout_height="wrap_content"
         android:text="Get Started"
-        android:textSize="25dp"
-        android:layout_marginTop="20dp"
+        android:textSize="25sp"
+        android:layout_marginTop="20sp"
 
         />
 
@@ -43,32 +43,32 @@
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="60sp"
+        android:layout_marginTop="90sp"
         android:background="@drawable/button3"
         android:isScrollContainer="false">
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="50sp"
+            android:layout_marginTop="5sp"
             android:background="@drawable/button2"
             android:padding="5sp"
             app:icon="@drawable/home"
-            app:iconSize="40dp" />
+            app:iconSize="40sp" />
 
         <Button
             android:id="@+id/button4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="100sp"
-            android:layout_marginTop="5dp"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:layout_marginLeft="130sp"
+            android:layout_marginTop="5sp"
             android:background="@drawable/button2"
-            android:padding="5dp"
+            android:padding="5sp"
             app:icon="@drawable/nav"
-            app:iconSize="40dp" />
+            app:iconSize="40sp" />
     </TableRow>
 
 
