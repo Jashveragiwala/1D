@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,6 +17,9 @@ public class MainActivity4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requetsWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main4);
         ButtonA = (Button) findViewById(R.id.doneadding);
         ButtonB = (Button) findViewById(R.id.button3);
@@ -43,5 +48,8 @@ public class MainActivity4 extends AppCompatActivity {
             }}
         );
 
+    }
+
+    private void requetsWindowFeature(int featureNoTitle) {
     }
 }
