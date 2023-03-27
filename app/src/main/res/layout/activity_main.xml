@@ -1,78 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CEE4F8"
-    android:padding="40sp"
+    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:gravity="center">
+    android:padding="40sp"
+    tools:context=".MainActivity">
 
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Navit "
         android:padding="0sp"
+        android:text="Navit "
         android:textColor="#032256"
         android:textSize="60sp"
 
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
-        android:layout_marginTop="20dp"
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="200sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name"
         app:srcCompat="@drawable/mainlogo" />
 
     <Button
         android:id="@+id/button2"
-        android:background="@drawable/button"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="131dp"
+        android:background="@drawable/button"
         android:text="Get Started"
+
         android:textSize="25sp"
-        android:layout_marginTop="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-        />
 
-
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_width="fill_parent"
-        android:layout_height="60sp"
-        android:layout_marginTop="90sp"
-        android:background="@drawable/button3"
-        android:isScrollContainer="false">
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_marginLeft="50sp"
-            android:layout_marginTop="5sp"
-            android:background="@drawable/button2"
-            android:padding="5sp"
-            app:icon="@drawable/home"
-            app:iconSize="40sp" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_marginLeft="80sp"
-            android:layout_marginTop="5sp"
-            android:background="@drawable/button2"
-            android:padding="5sp"
-            app:icon="@drawable/nav"
-            app:iconSize="40sp"
-            />
-    </TableRow>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
 
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
