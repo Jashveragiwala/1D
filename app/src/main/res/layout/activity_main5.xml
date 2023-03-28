@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity5"
     android:background="#CEE4F8"
-    android:padding="40sp"
+    android:padding="0sp"
     android:orientation="vertical"
     android:gravity="center">
 
@@ -14,59 +14,54 @@
         android:id="@+id/name5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Final Optimised Path"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:padding="0sp"
+        android:text="Final Optimised Path"
+        android:textAlignment="center"
         android:textColor="#032256"
         android:textSize="40sp"
-        android:textAlignment="center"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/days"
-        android:background="@drawable/button"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="81dp"
+        android:background="@drawable/button"
         android:text="Day#"
         android:textSize="25sp"
-        android:layout_marginTop="50sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name5" />
+
     <Button
         android:id="@+id/addlocation"
-        android:background="@drawable/button"
         android:layout_width="250sp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="230dp"
+        android:layout_marginEnd="81dp"
+        android:backgroundTint="@color/teal_700"
         android:text="Add Location"
         android:textSize="25sp"
-        android:layout_marginTop="50sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/days" />
 
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_width="fill_parent"
-        android:layout_height="60sp"
-        android:layout_marginTop="90sp"
-        android:background="@drawable/button3"
-        android:isScrollContainer="false">
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_marginLeft="50sp"
-            android:layout_marginTop="5sp"
-            android:background="@drawable/button2"
-            android:padding="5sp"
-            app:icon="@drawable/home"
-            app:iconSize="40sp" />
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_marginLeft="80sp"
-            android:layout_marginTop="5sp"
-            android:background="@drawable/button2"
-            android:padding="5sp"
-            app:icon="@drawable/nav"
-            app:iconSize="40sp" />
-    </TableRow>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

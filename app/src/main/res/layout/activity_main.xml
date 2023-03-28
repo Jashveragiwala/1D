@@ -7,7 +7,7 @@
     android:background="#CEE4F8"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="40sp"
+    android:padding="0sp"
     tools:context=".MainActivity">
 
 
@@ -15,11 +15,12 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:padding="0sp"
         android:text="Navit "
         android:textColor="#032256"
-        android:textSize="60sp"
 
+        android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +28,8 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="200sp"
+        android:layout_height="300sp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name"
@@ -36,11 +38,10 @@
     <Button
         android:id="@+id/button2"
         android:layout_width="250sp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="131dp"
-        android:background="@drawable/button"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
         android:text="Get Started"
-
+        android:backgroundTint="@color/teal_700"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,6 +53,7 @@
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
