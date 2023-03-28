@@ -13,12 +13,18 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.material.navigation.NavigationBarView;
+
+
 
 public class MainActivity6 extends AppCompatActivity {
 //    Button ButtonB;
 //    Button ButtonC;
     TextView txtView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +32,9 @@ public class MainActivity6 extends AppCompatActivity {
         requetsWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
+
+
+
         txtView = (TextView) findViewById(R.id.name6);
 //        ButtonB = (Button) findViewById(R.id.button3);
 //        ButtonC = (Button) findViewById(R.id.button4);
@@ -45,6 +54,8 @@ public class MainActivity6 extends AppCompatActivity {
 //                startActivity(intent);
 //            }}
 //        );
+
+
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

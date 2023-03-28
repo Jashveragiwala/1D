@@ -40,7 +40,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name5" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        app:cornerRadius="10dp"
         android:id="@+id/addlocation"
         android:layout_width="250sp"
         android:layout_height="60dp"

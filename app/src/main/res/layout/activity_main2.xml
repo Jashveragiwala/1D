@@ -67,7 +67,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/journeys1" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        app:cornerRadius="10dp"
         android:id="@+id/journeys3"
         android:layout_width="200sp"
         android:layout_height="60dp"
