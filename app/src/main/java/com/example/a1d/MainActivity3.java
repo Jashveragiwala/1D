@@ -60,12 +60,12 @@ public class MainActivity3 extends AppCompatActivity {
                 switch(id){
                     case R.id.nav_home:
                         // Handle click on "Home" button
-                        Intent intent = new Intent(MainActivity3.this, MainActivity.class);
+                        Intent intent = new Intent(MainActivity3.this, HomePageActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        Intent intent_journeys = new Intent((MainActivity3.this), MainActivity2.class);
+                        Intent intent_journeys = new Intent((MainActivity3.this), All_JourneysActivity.class);
                         startActivity(intent_journeys);
                         return true;
                     default:

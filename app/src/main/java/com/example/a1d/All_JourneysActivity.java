@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity2 extends AppCompatActivity {
+public class All_JourneysActivity extends AppCompatActivity {
 
     Button ButtonA;
     Button ButtonB;
@@ -29,7 +29,7 @@ public class MainActivity2 extends AppCompatActivity {
         requetsWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_all_journeys);
         txtView = (TextView) findViewById(R.id.name2);
         ButtonA = (Button) findViewById(R.id.journeys1);
         ButtonB = (Button) findViewById(R.id.journeys2);
@@ -40,7 +40,7 @@ public class MainActivity2 extends AppCompatActivity {
         ButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity2.this,MainActivity5.class);
+                Intent intent = new Intent(All_JourneysActivity.this,MainActivity5.class);
                 startActivity(intent);
             }}
         );
@@ -48,7 +48,7 @@ public class MainActivity2 extends AppCompatActivity {
         ButtonB.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity2.this,MainActivity5.class);
+                Intent intent = new Intent(All_JourneysActivity.this,MainActivity5.class);
                 startActivity(intent);
             }}
         );
@@ -56,7 +56,7 @@ public class MainActivity2 extends AppCompatActivity {
         ButtonC.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity2.this,MainActivity3.class);
+                Intent intent = new Intent(All_JourneysActivity.this,MainActivity3.class);
                 startActivity(intent);
             }}
         );
@@ -99,12 +99,12 @@ public class MainActivity2 extends AppCompatActivity {
                 switch(id){
                     case R.id.nav_home:
                         // Handle click on "Home" button
-                        Intent intent = new Intent(MainActivity2.this, MainActivity.class);
+                        Intent intent = new Intent(All_JourneysActivity.this, HomePageActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        Intent intent_journeys = new Intent((MainActivity2.this), MainActivity2.class);
+                        Intent intent_journeys = new Intent((All_JourneysActivity.this), All_JourneysActivity.class);
                         startActivity(intent_journeys);
                         return true;
                     default:

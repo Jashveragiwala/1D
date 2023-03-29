@@ -7,7 +7,7 @@
     android:background="#CEE4F8"
     android:padding="0sp"
     android:orientation="vertical"
-    tools:context=".MainActivity2"
+    tools:context=".All_JourneysActivity"
     android:gravity="center">
 
 
