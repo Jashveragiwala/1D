@@ -12,7 +12,7 @@
 
 
     <TextView
-        android:id="@+id/name2"
+        android:id="@+id/All_journeys_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
@@ -48,7 +48,7 @@
         app:iconSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name2" />
+        app:layout_constraintTop_toBottomOf="@+id/All_journeys_heading" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/journeys2"

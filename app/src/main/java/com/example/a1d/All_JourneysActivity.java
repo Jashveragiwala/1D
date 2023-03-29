@@ -3,7 +3,9 @@ package com.example.a1d;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.gson.Gson;
 
 public class All_JourneysActivity extends AppCompatActivity {
 
@@ -20,6 +23,19 @@ public class All_JourneysActivity extends AppCompatActivity {
     Button ButtonB;
     Button ButtonC;
     TextView txtView;
+
+    // sharedPreferences
+    // GSON is a library that will convert java objects into JSON format
+    // we can use this to store our JourneyObjects
+    public static void saveObjectToSharedPreference(Context context, String preferenceFileName, String serializedObjectKey, Object object) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName, 0);
+        SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
+        final Gson gson = new Gson();
+        String serializedObject = gson.toJson(object);
+        sharedPreferencesEditor.putString(serializedObjectKey, serializedObject);
+        sharedPreferencesEditor.apply();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +46,7 @@ public class All_JourneysActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_all_journeys);
-        txtView = (TextView) findViewById(R.id.name2);
+        txtView = (TextView) findViewById(R.id.All_journeys_heading);
         ButtonA = (Button) findViewById(R.id.journeys1);
         ButtonB = (Button) findViewById(R.id.journeys2);
         ButtonC = (Button) findViewById(R.id.journeys3);
