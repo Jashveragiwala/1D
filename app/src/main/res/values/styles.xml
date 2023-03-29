@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="bottomNavigationViewStyle" parent="Widget.MaterialComponents.BottomNavigationView">
+    <item name="background">@drawable/navshape</item>
+        <item name="itemPaddingTop">12dp</item>
+        <item name="itemPaddingBottom">12dp</item>
+</style>
+</resources>
+
