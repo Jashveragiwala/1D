@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="63dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="63dp"
         android:padding="0sp"
 
@@ -51,6 +51,7 @@
         android:hint="Enter Country of Visit"
         android:inputType="textPersonName"
         android:padding="2sp"
+
         android:textAlignment="center"
         android:textColor="#032256"
         android:textColorHint="#18C0C1"
@@ -64,37 +65,70 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="87dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="87dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="Enter Name for your Itinerary"
         android:inputType="textPersonName"
         android:padding="2sp"
-        android:textAlignment="center"
 
+        android:textAlignment="center"
         android:textColor="#032256"
         android:textColorHint="#18C0C1"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name3" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:hint="Number of days"
+        android:textAlignment="center"
+        android:textColorHint="#18C0C1"
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/done"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+        tools:layout_editor_absoluteX="20dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        app:cornerRadius="10dp"
         android:id="@+id/done"
         android:layout_width="150sp"
         android:layout_height="60dp"
         android:layout_marginStart="130dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="131dp"
+        android:layout_marginBottom="35dp"
         android:backgroundTint="@color/teal_700"
         android:text="Done"
         android:textSize="25sp"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
@@ -110,6 +144,7 @@
         app:itemIconSize="35dp"
         app:itemIconTint="#092048"
         app:itemTextColor="#092048"/>
+
 
 
 
