@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -25,8 +26,9 @@ public class MainActivity4 extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main4);
         ButtonA = (Button) findViewById(R.id.doneadding);
-//        ButtonB = (Button) findViewById(R.id.button3);
-//        ButtonC = (Button) findViewById(R.id.button4);
+
+        String TAG = "mainActivity4";
+        Log.i(TAG, "onCreate: I am inside activity4");
 
         ButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
