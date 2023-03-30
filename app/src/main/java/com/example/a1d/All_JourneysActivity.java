@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,13 +50,20 @@ public class All_JourneysActivity extends AppCompatActivity {
         requetsWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
-        requetsWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_all_journeys);
         txtView = (TextView) findViewById(R.id.All_journeys_heading);
-        ButtonC = (Button) findViewById(R.id.journeys3);
 
+        ButtonC = (Button) findViewById(R.id.journeys3);
+//        ButtonC.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                String TAG = "HomePage";
+//                Log.d(TAG, "onClick: get started is clicked"); // logcat logs that button is clicked
+//                Intent intent = new Intent(All_JourneysActivity.this, MainActivity3.class);
+//                startActivity(intent);
+//            }}
+//        );
 
 
 
