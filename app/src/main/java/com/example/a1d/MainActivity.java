@@ -20,8 +20,6 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity{
     Button ButtonA;
-    //    Button ButtonB;
-//    Button ButtonC;
     TextView txtView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +30,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         txtView = (TextView) findViewById(R.id.name);
         ButtonA = (Button) findViewById(R.id.button2);
-        // changed the navigation from table to bottom navigation view
-//        ButtonB = (Button) findViewById(R.id.button3);
-//        ButtonC = (Button) findViewById(R.id.button4);
+
 
         ButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -43,22 +39,6 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(intent);
             }}
         );
-
-//        ButtonB.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intent = new Intent(MainActivity.this,MainActivity.class);
-//                startActivity(intent);
-//            }}
-//        );
-//
-//        ButtonC.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intent = new Intent(MainActivity.this,MainActivity2.class);
-//                startActivity(intent);
-//            }}
-//        );
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

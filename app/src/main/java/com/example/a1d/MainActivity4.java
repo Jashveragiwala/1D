@@ -1,5 +1,4 @@
 package com.example.a1d;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.a1d.R;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity4 extends AppCompatActivity {
