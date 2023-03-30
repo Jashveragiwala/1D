@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.a1d.R;
 import com.google.android.material.navigation.NavigationBarView;
@@ -26,8 +26,9 @@ public class MainActivity4 extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main4);
         ButtonA = (Button) findViewById(R.id.doneadding);
-//        ButtonB = (Button) findViewById(R.id.button3);
-//        ButtonC = (Button) findViewById(R.id.button4);
+
+        String TAG = "mainActivity4";
+        Log.i(TAG, "onCreate: I am inside activity4");
 
         ButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -60,12 +61,12 @@ public class MainActivity4 extends AppCompatActivity {
                 switch(id){
                     case R.id.nav_home:
                         // Handle click on "Home" button
-                        Intent intent = new Intent(MainActivity4.this, MainActivity.class);
+                        Intent intent = new Intent(MainActivity4.this, HomePageActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        Intent intent_journeys = new Intent((MainActivity4.this), MainActivity2.class);
+                        Intent intent_journeys = new Intent((MainActivity4.this), All_JourneysActivity.class);
                         startActivity(intent_journeys);
                         return true;
                     default:

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -71,12 +70,12 @@ public class MainActivity5 extends AppCompatActivity {
                 switch(id){
                     case R.id.nav_home:
                         // Handle click on "Home" button
-                        Intent intent = new Intent(MainActivity5.this, MainActivity.class);
+                        Intent intent = new Intent(MainActivity5.this, HomePageActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        Intent intent_journeys = new Intent((MainActivity5.this), MainActivity2.class);
+                        Intent intent_journeys = new Intent((MainActivity5.this), All_JourneysActivity.class);
                         startActivity(intent_journeys);
                         return true;
                     default:

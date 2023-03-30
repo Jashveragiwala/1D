@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="0sp"
-    tools:context=".MainActivity">
+    tools:context=".HomePageActivity">
 
 
     <TextView
@@ -36,7 +36,7 @@
         app:srcCompat="@drawable/mainlogo" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button2"
+        android:id="@+id/button_get_started"
         android:layout_width="250sp"
         android:layout_height="60dp"
         android:layout_marginTop="40dp"
