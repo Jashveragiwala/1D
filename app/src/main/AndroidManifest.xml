@@ -21,7 +21,7 @@
 <!--        put your key here-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="Your own key" />
+            android:value="YOUR_KEY" />
 
 
         <activity
