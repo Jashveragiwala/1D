@@ -65,6 +65,15 @@ public class All_JourneysActivity extends AppCompatActivity {
 //            }}
 //        );
 
+        Button testButton = findViewById(R.id.test_maps_button);
+        testButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(All_JourneysActivity.this, Add_locations_activity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
@@ -88,6 +97,8 @@ public class All_JourneysActivity extends AppCompatActivity {
             }
         });
     }
+
+
         public void addButton(View view) {
             buttonContainer = findViewById(R.id.button_container);
             if (buttonCount <= 4) {

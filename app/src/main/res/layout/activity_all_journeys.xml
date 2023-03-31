@@ -31,10 +31,11 @@
         android:id="@+id/button_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/journeys3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/journeys2" />
 
@@ -45,8 +46,8 @@
         android:layout_marginStart="106dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="106dp"
-        android:layout_marginBottom="35dp"
         android:backgroundTint="@color/teal_700"
+        android:onClick="addButton"
         android:text="Add Journey"
         android:textSize="22sp"
         app:cornerRadius="10dp"
@@ -54,22 +55,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/journeys2"
-        android:onClick="addButton"/>
+        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:background="@drawable/navshape"
+        app:itemIconSize="35dp"
+        app:itemIconTint="#092048"
+        app:itemTextColor="#092048"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"
-        android:layout_marginBottom="10dp"
-        android:layout_marginHorizontal="20dp"
-        app:itemIconSize="35dp"
-        app:itemIconTint="#092048"
-        app:itemTextColor="#092048"/>
+        app:menu="@menu/bottom_nav_menu" />
+
+    <Button
+        android:id="@+id/test_maps_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Maps"
+        app:layout_constraintBottom_toTopOf="@+id/journeys3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
