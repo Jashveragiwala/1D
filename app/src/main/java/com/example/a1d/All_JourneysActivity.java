@@ -45,14 +45,14 @@ public class All_JourneysActivity extends AppCompatActivity {
 
         ButtonC = (Button) findViewById(R.id.journeys3);
 
-        Button testButton = findViewById(R.id.test_maps_button);
-        testButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(All_JourneysActivity.this, Add_locations_activity.class);
-                startActivity(intent);
-            }
-        });
+//        Button testButton = findViewById(R.id.test_maps_button);
+//        testButton.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                Intent intent = new Intent(All_JourneysActivity.this, Add_locations_activity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 //        ButtonC.setOnClickListener(new View.OnClickListener(){
 //            @Override

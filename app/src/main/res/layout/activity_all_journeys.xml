@@ -15,9 +15,7 @@
         android:id="@+id/All_journeys_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="75dp"
         android:padding="0sp"
 
         android:text="Journeys "
@@ -32,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/test_maps_button"
+        app:layout_constraintBottom_toTopOf="@+id/journeys3"
         app:layout_constraintTop_toBottomOf="@+id/All_journeys_heading"
         tools:layout_editor_absoluteX="0dp">
 
@@ -54,9 +52,7 @@
         android:id="@+id/journeys3"
         android:layout_width="200sp"
         android:layout_height="60dp"
-        android:layout_marginStart="106dp"
         android:layout_marginTop="100dp"
-        android:layout_marginEnd="106dp"
         android:layout_marginBottom="35dp"
         android:backgroundTint="@color/teal_700"
         android:onClick="addButton"
@@ -65,7 +61,6 @@
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/All_journeys_heading"
         app:layout_constraintVertical_bias="0.969" />
@@ -83,16 +78,18 @@
         android:layout_marginHorizontal="20dp"
         app:itemIconSize="35dp"
         app:itemIconTint="#092048"
-        app:itemTextColor="#092048"/>
+        app:itemTextColor="#092048"
+        app:itemBackground="@android:color/transparent"/>
 
-    <Button
-        android:id="@+id/test_maps_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test Maps"
-        app:layout_constraintBottom_toTopOf="@+id/journeys3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--    <Button-->
+    <!--        android:id="@+id/test_maps_button"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Test Maps"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/journeys3"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->

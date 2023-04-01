@@ -64,7 +64,8 @@
         android:layout_marginHorizontal="20dp"
         app:itemIconSize="35dp"
         app:itemIconTint="#092048"
-        app:itemTextColor="#092048"/>
+        app:itemTextColor="#092048"
+        app:itemBackground="@android:color/transparent"/>
 <!--    android:background="@color/teal_700"-->
 
 

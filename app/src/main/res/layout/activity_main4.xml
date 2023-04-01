@@ -10,75 +10,71 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <EditText
-            android:id="@+id/inputone"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="31dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="30dp"
-            android:width="0sp"
-            android:height="0sp"
-            android:background="#FFFFFF"
-            android:hint="Location"
-            android:inputType="textPersonName"
-            android:paddingLeft="20sp"
-            android:paddingTop="2sp"
-            android:paddingBottom="2sp"
+    <EditText
+        android:id="@+id/inputone"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:width="0sp"
+        android:height="0sp"
+        android:background="#FFFFFF"
+        android:hint="Location"
+        android:inputType="textPersonName"
+        android:paddingLeft="20sp"
+        android:paddingTop="2sp"
+        android:paddingBottom="2sp"
 
-            android:textColor="#1F1F1F"
-            android:textColorHint="#1F1F1F"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="#1F1F1F"
+        android:textColorHint="#1F1F1F"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/moreinput"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="31dp"
-            android:background="#FFFFFF"
-            android:ems="10"
-            android:hint="Add Location"
-            android:inputType="textPersonName"
-            android:paddingLeft="20sp"
-            android:paddingTop="2sp"
-            android:paddingBottom="2sp"
+    <EditText
+        android:id="@+id/moreinput"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Add Location"
+        android:inputType="textPersonName"
+        android:paddingLeft="20sp"
+        android:paddingTop="2sp"
+        android:paddingBottom="2sp"
 
-            android:textColor="#1F1F1F"
-            android:textColorHint="#1F1F1F"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputone" />
+        android:textColor="#1F1F1F"
+        android:textColorHint="#1F1F1F"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputone" />
 
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
+        android:layout_height="350dp"
+        app:layout_constraintBottom_toTopOf="@+id/doneadding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/moreinput"/>
 
     <com.google.android.material.button.MaterialButton
-            android:id="@+id/doneadding"
-            android:layout_width="250sp"
-            android:layout_height="60dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="450dp"
-            android:layout_marginEnd="81dp"
-            android:layout_marginBottom="35dp"
-            android:backgroundTint="@color/teal_700"
-            android:text="Done Adding"
-            android:textSize="25sp"
-            app:cornerRadius="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/moreinput" />
+        android:id="@+id/doneadding"
+        android:layout_width="250sp"
+        android:layout_height="60dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="@color/teal_700"
+        android:text="Done Adding"
+        android:textSize="25sp"
+        app:cornerRadius="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/moreinput" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav"
@@ -93,7 +89,8 @@
             android:layout_marginHorizontal="20dp"
             app:itemIconSize="35dp"
             app:itemIconTint="#092048"
-            app:itemTextColor="#092048"/>
+            app:itemTextColor="#092048"
+            app:itemBackground="@android:color/transparent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

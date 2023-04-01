@@ -14,9 +14,7 @@
         android:id="@+id/name5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
         android:padding="0sp"
         android:text="Final Optimised Path"
         android:textAlignment="center"
@@ -30,9 +28,7 @@
         android:id="@+id/days"
         android:layout_width="250sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
         android:layout_marginTop="150dp"
-        android:layout_marginEnd="81dp"
         android:background="@drawable/button"
         android:text="Day#"
         android:textSize="25sp"
@@ -44,9 +40,7 @@
         android:id="@+id/addlocation"
         android:layout_width="250sp"
         android:layout_height="60dp"
-        android:layout_marginStart="80dp"
         android:layout_marginTop="230dp"
-        android:layout_marginEnd="81dp"
         android:layout_marginBottom="35dp"
         android:backgroundTint="@color/teal_700"
         android:text="Add Location"
@@ -70,6 +64,7 @@
         android:layout_marginHorizontal="20dp"
         app:itemIconSize="35dp"
         app:itemIconTint="#092048"
-        app:itemTextColor="#092048"/>
+        app:itemTextColor="#092048"
+        app:itemBackground="@android:color/transparent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

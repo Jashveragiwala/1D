@@ -14,9 +14,7 @@
         android:id="@+id/imageView2"
         android:layout_width="120sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="145dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="145dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,9 +24,7 @@
         android:id="@+id/name3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="63dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="63dp"
         android:padding="0sp"
 
         android:text="Create Journeys "
@@ -43,9 +39,7 @@
         android:id="@+id/editTextTextPersonName"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="56dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="Enter Country of Visit"
@@ -64,9 +58,7 @@
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="87dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="87dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="Enter Name for your Itinerary"
@@ -116,19 +108,17 @@
         android:id="@+id/done"
         android:layout_width="150sp"
         android:layout_height="60dp"
-        android:layout_marginStart="130dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="131dp"
         android:layout_marginBottom="35dp"
         android:backgroundTint="@color/teal_700"
+        android:onClick="onAddButtonClicked"
         android:text="Done"
         android:textSize="25sp"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
-        android:onClick="onAddButtonClicked"/>
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -144,7 +134,8 @@
         android:layout_marginHorizontal="20dp"
         app:itemIconSize="35dp"
         app:itemIconTint="#092048"
-        app:itemTextColor="#092048"/>
+        app:itemTextColor="#092048"
+        app:itemBackground="@android:color/transparent"/>
 
 
 
