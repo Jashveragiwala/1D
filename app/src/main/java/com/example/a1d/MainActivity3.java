@@ -18,7 +18,8 @@ public class MainActivity3 extends AppCompatActivity {
     Button ButtonA;
 //    Button ButtonB;
 //    Button ButtonC;
-    TextView txtView;
+//    TextView txtView1;
+//    TextView txtView2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,14 +27,15 @@ public class MainActivity3 extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main3);
-        txtView = (TextView) findViewById(R.id.name3);
+//        txtView1 = (TextView) findViewById(R.id.textField1);
+//        txtView2 = (TextView) findViewById(R.id.textField2);
         ButtonA = (Button) findViewById(R.id.done);
 //        ButtonB = (Button) findViewById(R.id.button3);
 //        ButtonC = (Button) findViewById(R.id.button4);
         ButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity3.this,All_JourneysActivity.class);
+                Intent intent = new Intent(MainActivity3.this,MainActivity4.class);
                 startActivity(intent);
             }}
         );
@@ -65,7 +67,7 @@ public class MainActivity3 extends AppCompatActivity {
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        Intent intent_journeys = new Intent((MainActivity3.this), All_JourneysActivity.class);
+                        Intent intent_journeys = new Intent((MainActivity3.this), MainActivity5.class);
                         startActivity(intent_journeys);
                         return true;
                     default:

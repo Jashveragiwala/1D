@@ -10,46 +10,62 @@
         android:orientation="vertical"
         android:gravity="center">
 
-    <EditText
-        android:id="@+id/inputone"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:width="0sp"
-        android:height="0sp"
-        android:background="#FFFFFF"
-        android:hint="Location"
-        android:inputType="textPersonName"
-        android:paddingLeft="20sp"
-        android:paddingTop="2sp"
-        android:paddingBottom="2sp"
 
-        android:textColor="#1F1F1F"
-        android:textColorHint="#1F1F1F"
-        android:textSize="20sp"
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="31dp"
+        android:paddingTop="0dp"
+        android:paddingRight="25dp"
+        app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
+        <EditText
+            android:id="@+id/inputone"
+            android:layout_width="350dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="0dp"
+            android:width="0sp"
+            android:height="0sp"
+            android:background="#FFFFFF"
+            android:hint="Location"
+            android:inputType="textPersonName"
+            android:paddingLeft="22dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:textAlignment="center"
+            android:textColor="#1F1F1F"
+            android:textColorHint="#1F1F1F"
+            android:textSize="20dp" />
+
+    </ScrollView>
+
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/moreinput"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="Add Location"
+        android:layout_height="42dp"
+        android:backgroundTint="@color/white"
         android:inputType="textPersonName"
-        android:paddingLeft="20sp"
+        android:paddingLeft="15sp"
         android:paddingTop="2sp"
         android:paddingBottom="2sp"
-
-        android:textColor="#1F1F1F"
+        android:text="Add Location"
+        android:textColor="@color/black"
         android:textColorHint="#1F1F1F"
-        android:textSize="20sp"
+        android:textSize="18dp"
+        app:cornerRadius="0dp"
+        app:icon="@drawable/add_button"
+        app:iconSize="22dp"
+        app:iconTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputone" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
 
     <fragment
         android:id="@+id/mapFragment"
@@ -91,6 +107,7 @@
             app:itemIconTint="#092048"
             app:itemTextColor="#092048"
             app:itemBackground="@android:color/transparent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

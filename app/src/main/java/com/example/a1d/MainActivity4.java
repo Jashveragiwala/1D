@@ -1,17 +1,27 @@
 package com.example.a1d;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.example.a1d.R;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity4 extends AppCompatActivity {
@@ -66,7 +76,7 @@ public class MainActivity4 extends AppCompatActivity {
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        Intent intent_journeys = new Intent((MainActivity4.this), All_JourneysActivity.class);
+                        Intent intent_journeys = new Intent((MainActivity4.this), MainActivity5.class);
                         startActivity(intent_journeys);
                         return true;
                     default:
@@ -75,6 +85,9 @@ public class MainActivity4 extends AppCompatActivity {
         });
 
     }
+
+
+
 
     private void requetsWindowFeature(int featureNoTitle) {
     }

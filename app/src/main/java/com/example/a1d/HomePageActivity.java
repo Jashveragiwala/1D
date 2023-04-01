@@ -34,7 +34,7 @@ public class HomePageActivity extends AppCompatActivity{
             public void onClick(View view){
                 String TAG = "HomePage";
                 Log.d(TAG, "onClick: get started is clicked"); // logcat logs that button is clicked
-                Intent intent = new Intent(HomePageActivity.this, All_JourneysActivity.class);
+                Intent intent = new Intent(HomePageActivity.this, MainActivity3.class);
                 startActivity(intent);
             }}
         );
@@ -55,7 +55,7 @@ public class HomePageActivity extends AppCompatActivity{
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
                         Intent intent_journeys = new Intent((HomePageActivity.this),
-                                All_JourneysActivity.class);
+                                MainActivity5.class);
                         startActivity(intent_journeys);
                         return true;
                     default:

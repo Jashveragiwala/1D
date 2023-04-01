@@ -75,7 +75,7 @@ public class MainActivity5 extends AppCompatActivity {
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        Intent intent_journeys = new Intent((MainActivity5.this), All_JourneysActivity.class);
+                        Intent intent_journeys = new Intent((MainActivity5.this), MainActivity5.class);
                         startActivity(intent_journeys);
                         return true;
                     default:

@@ -27,7 +27,7 @@
         android:layout_marginTop="5dp"
         android:padding="0sp"
 
-        android:text="Create Journeys "
+        android:text="Create Journey"
         android:textColor="#032256"
         android:textSize="38sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,52 +35,39 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="Enter Country of Visit"
-        android:inputType="textPersonName"
-        android:padding="2sp"
 
-        android:textAlignment="center"
-        android:textColor="#032256"
-        android:textColorHint="#18C0C1"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name3" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="Enter Name for your Itinerary"
-        android:inputType="textPersonName"
-        android:padding="2sp"
-
-        android:textAlignment="center"
-        android:textColor="#032256"
-        android:textColorHint="#18C0C1"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField"
+        android:id="@+id/textField1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:hint="Country of Visit"
+        android:textAlignment="center"
+        android:textColorHint="#18C0C1"
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/textField2"
+        app:layout_constraintTop_toBottomOf="@+id/name3"
+        tools:layout_editor_absoluteX="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textField2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="60dp"
         android:hint="Number of days"
         android:textAlignment="center"
         android:textColorHint="#18C0C1"
@@ -89,18 +76,16 @@
         app:boxCornerRadiusBottomStart="30dp"
         app:boxCornerRadiusTopEnd="30dp"
         app:boxCornerRadiusTopStart="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/done"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
-        tools:layout_editor_absoluteX="20dp"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
-        >
+        app:layout_constraintBottom_toTopOf="@+id/done"
+        app:layout_constraintTop_toBottomOf="@+id/textField1"
+        tools:layout_editor_absoluteX="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            />
+            android:textAlignment="center" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
