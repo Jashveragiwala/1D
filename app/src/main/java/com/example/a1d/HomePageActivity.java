@@ -36,7 +36,7 @@ public class HomePageActivity extends AppCompatActivity{
             public void onClick(View view){
                 String TAG = "HomePage";
                 Log.d(TAG, "onClick: get started is clicked"); // logcat logs that button is clicked
-                Intent intent = new Intent(HomePageActivity.this, Create_JourneyActivity.class);
+                Intent intent = new Intent(HomePageActivity.this, MainActivity3.class);
                 startActivity(intent);
             }}
         );
