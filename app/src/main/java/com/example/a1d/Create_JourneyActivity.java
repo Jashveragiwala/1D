@@ -14,7 +14,7 @@ import android.widget.Button;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class Create_JourneyActivity extends AppCompatActivity {
-    Button ButtonA;
+    Button button_done;
 //    Button ButtonB;
 //    Button ButtonC;
 //    TextView txtView1;
@@ -28,10 +28,10 @@ public class Create_JourneyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_journey);
 //        txtView1 = (TextView) findViewById(R.id.textField1);
 //        txtView2 = (TextView) findViewById(R.id.textField2);
-        ButtonA = (Button) findViewById(R.id.done);
+        button_done = (Button) findViewById(R.id.done);
 //        ButtonB = (Button) findViewById(R.id.button3);
 //        ButtonC = (Button) findViewById(R.id.button4);
-        ButtonA.setOnClickListener(new View.OnClickListener(){
+        button_done.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(Create_JourneyActivity.this,MainActivity4.class);

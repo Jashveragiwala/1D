@@ -26,8 +26,6 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity4 extends AppCompatActivity {
     Button ButtonA;
-//    Button ButtonB;
-//    Button ButtonC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,21 +45,6 @@ public class MainActivity4 extends AppCompatActivity {
                 startActivity(intent);
             }}
         );
-//        ButtonB.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intent = new Intent(MainActivity4.this,MainActivity.class);
-//                startActivity(intent);
-//            }}
-//        );
-//
-//        ButtonC.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intent = new Intent(MainActivity4.this,MainActivity2.class);
-//                startActivity(intent);
-//            }}
-//        );
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
