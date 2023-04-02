@@ -15,10 +15,8 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class Create_JourneyActivity extends AppCompatActivity {
     Button button_done;
-//    Button ButtonB;
-//    Button ButtonC;
-//    TextView txtView1;
-//    TextView txtView2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,33 +24,21 @@ public class Create_JourneyActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_create_journey);
-//        txtView1 = (TextView) findViewById(R.id.textField1);
-//        txtView2 = (TextView) findViewById(R.id.textField2);
+
+
         button_done = (Button) findViewById(R.id.done);
-//        ButtonB = (Button) findViewById(R.id.button3);
-//        ButtonC = (Button) findViewById(R.id.button4);
+
+
         button_done.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(Create_JourneyActivity.this,MainActivity4.class);
+                // I changed this from MainAcitivity4 to add_locations
+                Intent intent = new Intent(Create_JourneyActivity.this, Add_locations_activity.class);
                 startActivity(intent);
             }}
         );
-//        ButtonB.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intent = new Intent(MainActivity3.this,MainActivity.class);
-//                startActivity(intent);
-//            }}
-//        );
-//
-//        ButtonC.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intent = new Intent(MainActivity3.this,MainActivity2.class);
-//                startActivity(intent);
-//            }}
-//        );
+
+
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
