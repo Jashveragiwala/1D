@@ -29,6 +29,8 @@ public class HomePageActivity extends AppCompatActivity{
         txtView = (TextView) findViewById(R.id.name);
         ButtonGetStarted = (Button) findViewById(R.id.button_get_started);
 
+        String numberOfDays = "0";
+
         ButtonGetStarted.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -56,6 +58,7 @@ public class HomePageActivity extends AppCompatActivity{
                         // Handle click on "Journeys" button
                         Intent intent_journeys = new Intent((HomePageActivity.this),
                                 MainActivity5.class);
+                        intent_journeys.putExtra("NUMBER_OF_DAYS", numberOfDays);
                         startActivity(intent_journeys);
                         return true;
                     default:

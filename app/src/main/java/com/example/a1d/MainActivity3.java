@@ -13,13 +13,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity3 extends AppCompatActivity {
     Button ButtonA;
-//    Button ButtonB;
-//    Button ButtonC;
-//    TextView txtView1;
-//    TextView txtView2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,33 +25,35 @@ public class MainActivity3 extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main3);
-//        txtView1 = (TextView) findViewById(R.id.textField1);
-//        txtView2 = (TextView) findViewById(R.id.textField2);
         ButtonA = (Button) findViewById(R.id.done);
-//        ButtonB = (Button) findViewById(R.id.button3);
-//        ButtonC = (Button) findViewById(R.id.button4);
+
         ButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity3.this,MainActivity4.class);
-                startActivity(intent);
+                TextInputLayout textField2 = findViewById(R.id.textField2);
+
+                String numberOfDays = textField2.getEditText().getText().toString();
+                System.out.println(numberOfDays);
+                if (numberOfDays.isEmpty()) {
+                    textField2.setError("Field is required");
+                } else {
+                    try {
+                        int numDays = Integer.parseInt(numberOfDays); // try to parse the string as an integer
+                        textField2.setError(null); // clear any previous error message
+                        Intent intent2 = new Intent(MainActivity3.this,MainActivity4.class);
+                        intent2.putExtra("NUMBER_OF_DAYS", numberOfDays);
+                        startActivity(intent2);
+                    } catch (NumberFormatException e) { // if the string cannot be parsed as an integer
+                        textField2.setError("Please enter a valid number"); // display an error message
+                    }
+
+                }
+
+
             }}
         );
-//        ButtonB.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intent = new Intent(MainActivity3.this,MainActivity.class);
-//                startActivity(intent);
-//            }}
-//        );
-//
-//        ButtonC.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intent = new Intent(MainActivity3.this,MainActivity2.class);
-//                startActivity(intent);
-//            }}
-//        );
+
+
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -67,7 +67,9 @@ public class MainActivity3 extends AppCompatActivity {
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
+                        String numberOfDays = "0";
                         Intent intent_journeys = new Intent((MainActivity3.this), MainActivity5.class);
+                        intent_journeys.putExtra("NUMBER_OF_DAYS", numberOfDays);
                         startActivity(intent_journeys);
                         return true;
                     default:

@@ -24,23 +24,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/inputone"
-            android:layout_width="350dp"
-            android:layout_height="34dp"
-            android:layout_marginTop="0dp"
-            android:width="0sp"
-            android:height="0sp"
-            android:background="#FFFFFF"
-            android:hint="Location"
-            android:inputType="textPersonName"
-            android:paddingLeft="22dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:textAlignment="center"
-            android:textColor="#1F1F1F"
-            android:textColorHint="#1F1F1F"
-            android:textSize="20dp" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical">
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </ScrollView>
 
@@ -155,3 +144,21 @@
     <!--        android:layout_alignParentTop="true"/>-->
 
     <!--</RelativeLayout>-->
+
+<!--<EditText-->
+<!--android:id="@+id/inputone"-->
+<!--android:layout_width="350dp"-->
+<!--android:layout_height="34dp"-->
+<!--android:layout_marginTop="0dp"-->
+<!--android:width="0sp"-->
+<!--android:height="0sp"-->
+<!--android:background="#FFFFFF"-->
+<!--android:hint="Location"-->
+<!--android:inputType="textPersonName"-->
+<!--android:paddingLeft="22dp"-->
+<!--android:paddingTop="2dp"-->
+<!--android:paddingBottom="2dp"-->
+<!--android:textAlignment="center"-->
+<!--android:textColor="#1F1F1F"-->
+<!--android:textColorHint="#1F1F1F"-->
+<!--android:textSize="20dp" />-->

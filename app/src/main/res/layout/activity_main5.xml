@@ -24,23 +24,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/days"
-        android:layout_width="250sp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:background="@drawable/button"
-        android:text="Day#"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name5" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addlocation"
         android:layout_width="250sp"
         android:layout_height="60dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="500dp"
         android:layout_marginBottom="35dp"
         android:backgroundTint="@color/teal_700"
         android:text="Add Location"
@@ -49,7 +38,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/days" />
+        app:layout_constraintTop_toBottomOf="@+id/name5" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
@@ -66,5 +55,27 @@
         app:itemIconTint="#092048"
         app:itemTextColor="#092048"
         app:itemBackground="@android:color/transparent"/>
+
+    <ScrollView
+        android:layout_width="348dp"
+        android:layout_height="339dp"
+        app:layout_constraintBottom_toTopOf="@+id/addlocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name5">
+
+        <LinearLayout
+            android:id="@+id/dayadd"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/addlocation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/days"
+            app:layout_constraintVertical_bias="0.473"></LinearLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,7 +28,7 @@ public class MainActivity6 extends AppCompatActivity {
         getSupportActionBar().hide();
 
 
-
+        String numberOfDays = getIntent().getStringExtra("NUMBER_OF_DAYS");
         txtView = (TextView) findViewById(R.id.name6);
 //        ButtonB = (Button) findViewById(R.id.button3);
 //        ButtonC = (Button) findViewById(R.id.button4);
@@ -64,6 +64,7 @@ public class MainActivity6 extends AppCompatActivity {
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
                         Intent intent_journeys = new Intent((MainActivity6.this), MainActivity5.class);
+                        intent_journeys.putExtra("NUMBER_OF_DAYS", numberOfDays);
                         startActivity(intent_journeys);
                         return true;
                     default:
