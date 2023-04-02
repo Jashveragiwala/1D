@@ -35,7 +35,7 @@
             android:name=".MainActivity4"
             android:exported="false" />
         <activity
-            android:name=".MainActivity3"
+            android:name=".Create_JourneyActivity"
             android:exported="false" />
         <activity
             android:name=".All_JourneysActivity"

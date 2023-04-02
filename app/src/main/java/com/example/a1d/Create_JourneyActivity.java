@@ -10,11 +10,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity3 extends AppCompatActivity {
+public class Create_JourneyActivity extends AppCompatActivity {
     Button ButtonA;
 //    Button ButtonB;
 //    Button ButtonC;
@@ -26,7 +25,7 @@ public class MainActivity3 extends AppCompatActivity {
         requetsWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.activity_create_journey);
 //        txtView1 = (TextView) findViewById(R.id.textField1);
 //        txtView2 = (TextView) findViewById(R.id.textField2);
         ButtonA = (Button) findViewById(R.id.done);
@@ -35,7 +34,7 @@ public class MainActivity3 extends AppCompatActivity {
         ButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(MainActivity3.this,MainActivity4.class);
+                Intent intent = new Intent(Create_JourneyActivity.this,MainActivity4.class);
                 startActivity(intent);
             }}
         );
@@ -62,12 +61,12 @@ public class MainActivity3 extends AppCompatActivity {
                 switch(id){
                     case R.id.nav_home:
                         // Handle click on "Home" button
-                        Intent intent = new Intent(MainActivity3.this, HomePageActivity.class);
+                        Intent intent = new Intent(Create_JourneyActivity.this, HomePageActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        Intent intent_journeys = new Intent((MainActivity3.this), MainActivity5.class);
+                        Intent intent_journeys = new Intent((Create_JourneyActivity.this), MainActivity5.class);
                         startActivity(intent_journeys);
                         return true;
                     default:
