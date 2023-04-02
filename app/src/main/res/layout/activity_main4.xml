@@ -64,7 +64,8 @@
         app:layout_constraintBottom_toTopOf="@+id/doneadding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/moreinput"/>
+        app:layout_constraintTop_toBottomOf="@+id/moreinput"
+        tools:layout="@layout/activity_main4" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/doneadding"
