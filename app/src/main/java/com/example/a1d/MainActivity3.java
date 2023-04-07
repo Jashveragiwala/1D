@@ -31,6 +31,10 @@ public class MainActivity3 extends AppCompatActivity {
         setContentView(R.layout.activity_main3);
         ButtonA = (Button) findViewById(R.id.done);
 
+
+        //TODO 1: get the location that the person searched using a searchview
+        //TODO 2: check whether the location is a valid location
+        //TODO 3: pass the location to MainActivity4 and display it on the map
         ButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

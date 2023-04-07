@@ -148,12 +148,16 @@ public class MainActivity4 extends AppCompatActivity {
                 });
 
                 // Add the EditText view to a parent view, e.g. a LinearLayout
-                LinearLayoutCompat linearLayout = (LinearLayoutCompat) findViewById(R.id.search_bar);
-                linearLayout.setGravity(Gravity.CENTER);
-                linearLayout.addView(editText);
+//                LinearLayoutCompat linearLayout = (LinearLayoutCompat) findViewById(R.id.search_bar);
+//                linearLayout.setGravity(Gravity.CENTER);
+//                linearLayout.addView(editText);
             }
         });
 
+        //TODO 4: Check if the user inserted a valid location using google autocomplete
+        //TODO 5: Add that location to the map view fragment
+        //TODO 6: Give the user the option to remove the location
+        //TODO 7: Store these locations into a JSON for the backend to receive
 
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
