@@ -3,6 +3,7 @@ package com.example.a1d;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.content.Intent;
 import android.view.MenuItem;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 import com.google.android.material.navigation.NavigationBarView;
 
 
-
+// MainActivity6 -> Page for each Day in Final Optimized path
 public class MainActivity6 extends AppCompatActivity {
 //    Button ButtonB;
 //    Button ButtonC;
@@ -22,6 +23,7 @@ public class MainActivity6 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main6);
         requetsWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

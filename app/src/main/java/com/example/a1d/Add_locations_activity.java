@@ -8,6 +8,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
+// Can delete this file
+
 public class Add_locations_activity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;

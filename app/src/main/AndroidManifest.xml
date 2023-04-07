@@ -16,12 +16,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.1D"
+        android:screenOrientation="portrait"
         tools:targetApi="31">
 
 <!--        put your key here-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="Your_key" />
+            android:value="AIzaSyD03pQpPpanpGgrJyTfCagPxTLAya8pQws" />
 
 
         <activity
@@ -33,7 +34,8 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity4"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".MainActivity3"
             android:exported="false" />

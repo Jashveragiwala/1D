@@ -54,12 +54,14 @@
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintBottom_toTopOf="@+id/textField2"
         app:layout_constraintTop_toBottomOf="@+id/name3"
-        tools:layout_editor_absoluteX="20dp">
+
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,7 +70,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
-        android:hint="Number of days"
+        android:hint="Location of Your Hotel"
+        android:textAlignment="center"
+        android:textColorHint="#18C0C1"
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/textField3"
+        app:layout_constraintTop_toBottomOf="@+id/textField1"
+        tools:layout_editor_absoluteX="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textField3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="60dp"
+        android:hint="Number of Days"
         android:textAlignment="center"
         android:textColorHint="#18C0C1"
         app:boxBackgroundColor="@color/white"
@@ -79,13 +108,14 @@
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintBottom_toTopOf="@+id/done"
-        app:layout_constraintTop_toBottomOf="@+id/textField1"
+        app:layout_constraintTop_toBottomOf="@+id/textField2"
         tools:layout_editor_absoluteX="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

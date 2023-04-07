@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,11 +17,14 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+// MainActivity3 -> CreateJourney
+
 public class MainActivity3 extends AppCompatActivity {
     Button ButtonA;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         requetsWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
@@ -30,7 +34,7 @@ public class MainActivity3 extends AppCompatActivity {
         ButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                TextInputLayout textField2 = findViewById(R.id.textField2);
+                TextInputLayout textField2 = findViewById(R.id.textField3);
 
                 String numberOfDays = textField2.getEditText().getText().toString();
                 System.out.println(numberOfDays);

@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// AllJourneys -> Deleted Page
 public class All_JourneysActivity extends AppCompatActivity {
 
     private LinearLayout buttonContainer;

@@ -3,6 +3,7 @@ package com.example.a1d;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationBarView;
 
+// MainActivity5 -> Number of Days (Final Optimized path)
 public class MainActivity5 extends AppCompatActivity {
     Button ButtonA;
     Button ButtonB;
@@ -24,6 +26,7 @@ public class MainActivity5 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         requetsWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
