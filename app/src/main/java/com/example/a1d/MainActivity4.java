@@ -148,9 +148,9 @@ public class MainActivity4 extends AppCompatActivity {
                 });
 
                 // Add the EditText view to a parent view, e.g. a LinearLayout
-//                LinearLayoutCompat linearLayout = (LinearLayoutCompat) findViewById(R.id.search_bar);
-//                linearLayout.setGravity(Gravity.CENTER);
-//                linearLayout.addView(editText);
+                LinearLayoutCompat linearLayout = (LinearLayoutCompat) findViewById(R.id.search_bar);
+                linearLayout.setGravity(Gravity.CENTER);
+                linearLayout.addView(editText);
             }
         });
 
