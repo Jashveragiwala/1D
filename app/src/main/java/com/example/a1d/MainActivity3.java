@@ -38,21 +38,25 @@ public class MainActivity3 extends AppCompatActivity {
         ButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                TextInputLayout textField2 = findViewById(R.id.textField3);
+                TextInputLayout textField3 = findViewById(R.id.textField3);
+                String numberOfDays = textField3.getEditText().getText().toString();
 
-                String numberOfDays = textField2.getEditText().getText().toString();
+                TextInputLayout textField2 = findViewById(R.id.textField2);
+                String startLocation = textField2.getEditText().getText().toString();
+
                 System.out.println(numberOfDays);
                 if (numberOfDays.isEmpty()) {
-                    textField2.setError("Field is required");
+                    textField3.setError("Field is required");
                 } else {
                     try {
                         int numDays = Integer.parseInt(numberOfDays); // try to parse the string as an integer
-                        textField2.setError(null); // clear any previous error message
+                        textField3.setError(null); // clear any previous error message
                         Intent intent2 = new Intent(MainActivity3.this,MainActivity4.class);
                         intent2.putExtra("NUMBER_OF_DAYS", numberOfDays);
+                        intent2.putExtra("START_LOCATION", startLocation);
                         startActivity(intent2);
                     } catch (NumberFormatException e) { // if the string cannot be parsed as an integer
-                        textField2.setError("Please enter a valid number"); // display an error message
+                        textField3.setError("Please enter a valid number"); // display an error message
                     }
 
                 }

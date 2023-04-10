@@ -8,9 +8,12 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
@@ -29,88 +32,82 @@ import com.example.a1d.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 // MainActivity4 -> Add Locations
 public class MainActivity4 extends AppCompatActivity {
     Button ButtonA;
     MaterialButton AddLoc;
+
+    String numberOfDays = "";
     String startLocation = "";
     String locationsString = "";
+    ArrayList<String> locations = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         requetsWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main4);
         ButtonA = (Button) findViewById(R.id.doneadding);
 
         String TAG = "mainActivity4";
         Log.i(TAG, "onCreate: I am inside activity4");
-        String numberOfDays = getIntent().getStringExtra("NUMBER_OF_DAYS");
+
+        numberOfDays = getIntent().getStringExtra("NUMBER_OF_DAYS");
+        startLocation = getIntent().getStringExtra("START_LOCATION");
+
         System.out.println(numberOfDays);
-        ButtonA.setOnClickListener(new View.OnClickListener(){
+        ButtonA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // uncomment the following code to call the clustering + tsp to get the path
                 // TODO Make runnable and executable for this
 
-//                Clustering c = new Clustering();
-//                ArrayList<String> clusters = null;
-//                try {
-//                    clusters = c.getClusters(Integer.parseInt(numberOfDays), startLocation, locationsString);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//
-//                for (String s : clusters) {
-//                    double[][] distanceMatrix = new double[0][];
-//                    DistanceMatrixExample DM = new DistanceMatrixExample();
-//                    HashMap<Integer, String> indexes = DM.indexes;
-//                    Integer origin = null;
-//
-//                    for (Map.Entry<Integer, String> entry : indexes.entrySet()) {
-//                        if (entry.getValue().equals(startLocation)) {
-//                            origin = entry.getKey();
-//                            break;
-//                        }
-//                    }
-//
-//                    try {
-//                        distanceMatrix = DM.getDistances(s);
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                    int[] path = TravellingSalesman.solve(distanceMatrix, origin);
-//                }
+                for (String s : locations) {
+                    locationsString += s + "%7C%";
+                }
+
+                int noOfDays = Integer.parseInt(numberOfDays);
+
+                getPath(noOfDays, startLocation, locationsString);
+
 
                 // call getClusters from Clustering.java
-                Intent intent = new Intent(MainActivity4.this,MainActivity5.class);
+                Intent intent = new Intent(MainActivity4.this, MainActivity5.class);
                 intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
                 startActivity(intent);
-            }}
-        );
+            }
+        });
 
         MaterialButton AddLoc = findViewById(R.id.moreinput);
         AddLoc.setOnClickListener(new View.OnClickListener() {
 
             int count = 1;
+
             @Override
             public void onClick(View view) {
                 EditText editText = new EditText(MainActivity4.this);
                 editText.setId(View.generateViewId());
 
-                System.out.println(editText.getId());
+                // System.out.println(editText.getId());
                 // gets the id for each component
-                System.out.println(editText.getText());
+                // System.out.println(editText.getText());
+
                 // gets the text for each component
                 // this text sent to Clustering code
-                locationsString += editText.getText() + "%7C%";
+
+                // locationsString += editText.getText().toString() + "%7C%";
+
+                locations.add(editText.getText().toString());
 
 
                 LinearLayoutCompat.LayoutParams layoutParams = new LinearLayoutCompat.LayoutParams(1220, 100);
@@ -132,14 +129,14 @@ public class MainActivity4 extends AppCompatActivity {
                 Drawable deleteIcon = ContextCompat.getDrawable(MainActivity4.this, R.drawable.cross);
                 deleteIcon.setBounds(0, 0, 50, 50);
                 editText.setCompoundDrawables(deleteIcon, null, null, null);
-
                 editText.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if (event.getAction() == MotionEvent.ACTION_UP) {
                             if (event.getX() >= 120 && event.getX() <= 170) {
                                 // Remove the EditText view from its parent layout
-                                ((ViewGroup)editText.getParent()).removeView(editText);
+                                locations.remove(editText.getText().toString());
+                                ((ViewGroup) editText.getParent()).removeView(editText);
                                 return true;
                             }
                         }
@@ -165,7 +162,7 @@ public class MainActivity4 extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                switch(id){
+                switch (id) {
                     case R.id.nav_home:
                         // Handle click on "Home" button
                         Intent intent = new Intent(MainActivity4.this, HomePageActivity.class);
@@ -185,9 +182,94 @@ public class MainActivity4 extends AppCompatActivity {
 
     }
 
+    void getPath(int numberOfDays, String startLocation, String locationsString) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        final Handler handler = new Handler(Looper.getMainLooper());
 
+        executor.execute(new Runnable() {
 
+            @Override
+            public void run() {
+                int numberOfDays = 2;
+                String startLocation = "SUTD";
+                String locationsString = "HomeTeamNS Bukit Batok%7C%SUTD%7C%NUS%7C%NTU%7C%Singapore Management University%7C%Singapore Institute of Technology%7C%Simei MRT%7C%51 Changi Village Rd%7C%Toppers Education Centre%7C%Waterway Point%7C%";
 
-    private void requetsWindowFeature(int featureNoTitle) {
+                Clustering c = new Clustering();
+                ArrayList<String> clusters = null;
+
+                ArrayList<String> finalPath = new ArrayList<>();
+
+                try {
+                    clusters = c.getClusters(numberOfDays, startLocation, locationsString);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                for (String s : clusters) {
+                    DistanceMatrixExample DM = new DistanceMatrixExample();
+
+                    double[][] distanceMatrix;
+
+                    try {
+                        distanceMatrix = DM.getDistances(s);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    HashMap<Integer, String> indexes = DM.getIndexes();
+
+                    TravellingSalesman ts = new TravellingSalesman(distanceMatrix);
+
+                    int[] path = ts.solve(distanceMatrix, 0);
+
+                    for (int i : path) {
+                        finalPath.add(indexes.get(i));
+                    }
+
+                }
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println(finalPath);
+                    }
+                });
+            }
+        });
+    }
+
+    private void requetsWindowFeature ( int featureNoTitle){
+
     }
 }
+
+//                Clustering c = new Clustering();
+//                ArrayList<String> clusters = null;
+//                try {
+//                    clusters = c.getClusters(numberOfDays, startLocation, locationsString);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//                for (String s : clusters) {
+//                    double[][] distanceMatrix = new double[0][];
+//                    DistanceMatrixExample DM = new DistanceMatrixExample();
+//                    HashMap<Integer, String> indexes = DM.indexes;
+//                    Integer origin = null;
+//
+//                    for (Map.Entry<Integer, String> entry : indexes.entrySet()) {
+//                        if (entry.getValue().equals(startLocation)) {
+//                            origin = entry.getKey();
+//                            break;
+//                        }
+//                    }
+//
+//                    try {
+//                        distanceMatrix = DM.getDistances(s);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                    int[] path = TravellingSalesman.solve(distanceMatrix, origin);
+//
+//                    System.out.println(path);
+//                }
