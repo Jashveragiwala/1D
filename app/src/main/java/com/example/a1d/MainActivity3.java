@@ -30,8 +30,7 @@ public class MainActivity3 extends AppCompatActivity {
         ButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                TextInputLayout textField2 = findViewById(R.id.textField2);
-
+                TextInputLayout textField2 = findViewById(R.id.textField3);
                 String numberOfDays = textField2.getEditText().getText().toString();
                 System.out.println(numberOfDays);
                 if (numberOfDays.isEmpty()) {

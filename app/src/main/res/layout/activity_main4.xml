@@ -8,7 +8,8 @@
         android:background="#CEE4F8"
         android:padding="0sp"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        >
 
 
     <ScrollView
@@ -16,9 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:paddingLeft="31dp"
+        android:paddingLeft="0dp"
         android:paddingTop="0dp"
-        android:paddingRight="25dp"
+        android:paddingRight="0dp"
+        android:layout_marginHorizontal="7dp"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,17 +58,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView" />
 
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/moreinput"
+        app:layout_constraintBottom_toTopOf="@+id/mapFragment"
+        android:text="Error No Such Location"
+        android:gravity="center"
+        android:textColor="@color/red"></TextView>
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="400dp"
         app:layout_constraintBottom_toTopOf="@+id/doneadding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/moreinput"
+        app:layout_constraintTop_toBottomOf="@+id/error"
         tools:layout="@layout/activity_main4" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/doneadding"
         android:layout_width="250sp"
@@ -101,65 +111,9 @@
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--<?xml version="1.0" encoding="utf-8"?>-->
-    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--    xmlns:tools="http://schemas.android.com/tools"-->
-    <!--    android:id="@+id/activity_main"-->
-    <!--    android:layout_width="match_parent"-->
-    <!--    android:layout_height="match_parent"-->
-    <!--    tools:context=".MainActivity">-->
-
-    <!--    <EditText-->
-    <!--        android:id="@+id/inputone"-->
-    <!--        android:layout_width="350dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="31dp"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:layout_marginEnd="30dp"-->
-    <!--        android:width="0sp"-->
-    <!--        android:height="0sp"-->
-    <!--        android:background="#FFFFFF"-->
-    <!--        android:inputType="textPersonName"-->
-    <!--        android:paddingTop="2sp"-->
-    <!--        android:paddingBottom="2sp"-->
-
-    <!--        android:textColor="#1F1F1F"-->
-    <!--        android:textColorHint="#1F1F1F"-->
-    <!--        android:textSize="20sp"-->
-    <!--         />-->
-
-    <!--    <fragment-->
-    <!--        android:id="@+id/map_fragment"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        class="com.google.android.gms.maps.SupportMapFragment"/>-->
-
-    <!--    <EditText-->
-    <!--        android:id="@+id/search_bar"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:hint="Search for a location"-->
-    <!--        android:inputType="text"-->
-    <!--        android:maxLines="1"-->
-    <!--        android:singleLine="true"-->
-    <!--        android:layout_alignParentTop="true"/>-->
-
-    <!--</RelativeLayout>-->
-
-<!--<EditText-->
-<!--android:id="@+id/inputone"-->
-<!--android:layout_width="350dp"-->
-<!--android:layout_height="34dp"-->
-<!--android:layout_marginTop="0dp"-->
-<!--android:width="0sp"-->
-<!--android:height="0sp"-->
-<!--android:background="#FFFFFF"-->
-<!--android:hint="Location"-->
-<!--android:inputType="textPersonName"-->
-<!--android:paddingLeft="22dp"-->
-<!--android:paddingTop="2dp"-->
-<!--android:paddingBottom="2dp"-->
-<!--android:textAlignment="center"-->
-<!--android:textColor="#1F1F1F"-->
-<!--android:textColorHint="#1F1F1F"-->
-<!--android:textSize="20dp" />-->
+<!--tell akash-->
+<!--in scroll view add android:layout_marginHorizontal="7dp"-->
+<!--compare doneadding button code to that of akash's code-->
+<!--main activity 4 java code change to keep the mobile portrait only and there is one version in android manifest also
+"setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);"-->
+<!--add this code to main activity 3.xml to change all text color to black android:textColor="@color/black"-->

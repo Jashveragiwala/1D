@@ -17,13 +17,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:padding="0sp"
-        android:text="Navit "
+        android:text="Navit"
         android:textColor="#032256"
 
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:typeface="normal"/>
 
     <ImageView
         android:id="@+id/imageView"
