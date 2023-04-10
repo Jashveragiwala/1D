@@ -62,6 +62,7 @@ public class MainActivity4 extends AppCompatActivity {
     ArrayList<String> locations = new ArrayList<>();
     String Location;
     TextView ErrorView;
+    Marker selectedmarker = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +86,7 @@ public class MainActivity4 extends AppCompatActivity {
         ButtonA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // uncomment the following code to call the clustering + tsp to get the path
-                // TODO Make runnable and executable for this
+
 
                 for (String s : locations) {
                     locationsString += s + "%7C%";
@@ -94,13 +94,33 @@ public class MainActivity4 extends AppCompatActivity {
 
                 int noOfDays = Integer.parseInt(numberOfDays);
 
-                getPath(noOfDays, startLocation, locationsString);
+                System.out.println(locations);
+                System.out.println(locationsString);
+
+                System.out.println();
+                //ArrayList<ArrayList<String>> allPaths = getPath(noOfDays, startLocation, locationsString);
+
+                //System.out.println("NOT INSIDE EXECUTABLE");
+                //System.out.println(allPaths);
 
 
-                // call getClusters from Clustering.java
-                Intent intent = new Intent(MainActivity4.this, MainActivity5.class);
-                intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
-                startActivity(intent);
+
+
+
+                System.out.println("NOT INSIDE EXECUTABLE");
+                System.out.println();
+
+                getPath(noOfDays, startLocation, locationsString, new PathCallback() {
+                    @Override
+                    public void onPathsReady(ArrayList<ArrayList<String>> allPaths) {
+                        System.out.println(allPaths);
+                        Intent intent = new Intent(MainActivity4.this, MainActivity5.class);
+                        intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
+                        intent.putExtra("ALL_PATHS", allPaths);
+                        startActivity(intent);
+                    }
+                });
+
             }
         });
 
@@ -113,18 +133,6 @@ public class MainActivity4 extends AppCompatActivity {
             public void onClick(View view) {
                 EditText editText = new EditText(MainActivity4.this);
                 editText.setId(View.generateViewId());
-
-                // System.out.println(editText.getId());
-                // gets the id for each component
-                // System.out.println(editText.getText());
-
-                // gets the text for each component
-                // this text sent to Clustering code
-
-                // locationsString += editText.getText().toString() + "%7C%";
-
-                locations.add(editText.getText().toString());
-
 
                 LinearLayoutCompat.LayoutParams layoutParams = new LinearLayoutCompat.LayoutParams(1220, 100);
                 layoutParams.setMargins(0, 10, 10, 10); // set the top margin to 20 pixels
@@ -166,8 +174,12 @@ public class MainActivity4 extends AppCompatActivity {
                         if (event.getAction() == MotionEvent.ACTION_UP) {
                             if (event.getX() >= iconLeft && event.getX() <= iconRight) {
                                 // Remove the EditText view from its parent layout
-
-                                ((ViewGroup)editText.getParent()).removeView(editText);
+                                if (selectedmarker!=null){
+                                    locations.remove(editText.getText().toString());
+                                    ((ViewGroup)editText.getParent()).removeView(editText);
+                                    selectedmarker.remove();
+                                    selectedmarker = null;
+                                }
                                 return true;
                             }
                             if (event.getX() >= addiconleft && event.getX() <= addiconRight) {
@@ -193,6 +205,7 @@ public class MainActivity4 extends AppCompatActivity {
                                                 Address address = addresses.get(0);
                                                 LatLng location = new LatLng(address.getLatitude(), address.getLongitude());
 
+
                                                 // Move the camera to the desired location and zoom level
                                                 float zoomLevel = 12f;
                                                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel));
@@ -203,7 +216,17 @@ public class MainActivity4 extends AppCompatActivity {
                                                         .title(address.getLocality())
                                                         .snippet(address.getAdminArea());
                                                 googleMap.addMarker(markerOptions);
+                                                locations.add(Location);
                                                 ErrorView.setVisibility(View.GONE);
+
+                                                googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                                    @Override
+                                                    public boolean onMarkerClick(@NonNull Marker marker) {
+
+                                                        selectedmarker = marker;
+                                                        return  true;
+                                                    }
+                                                });
                                             }
                                         } catch (IOException e) {
                                             e.printStackTrace();
@@ -257,38 +280,45 @@ public class MainActivity4 extends AppCompatActivity {
 
     }
 
-    void getPath(int numberOfDays, String startLocation, String locationsString) {
+    ArrayList<ArrayList<String>> getPath(int numberOfDays, String startLocation, String locationsString, PathCallback callback) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         final Handler handler = new Handler(Looper.getMainLooper());
+
+        final ArrayList<ArrayList<String>> allPaths = new ArrayList<>();
 
         executor.execute(new Runnable() {
 
             @Override
             public void run() {
-                int numberOfDays = 2;
-                String startLocation = "SUTD";
-                String locationsString = "HomeTeamNS Bukit Batok%7C%SUTD%7C%NUS%7C%NTU%7C%Singapore Management University%7C%Singapore Institute of Technology%7C%Simei MRT%7C%51 Changi Village Rd%7C%Toppers Education Centre%7C%Waterway Point%7C%";
+                // int numberOfDays = 2;
+                // String startLocation = "SUTD";
+                // String locationsString = "HomeTeamNS Bukit Batok%7C%SUTD%7C%NUS%7C%NTU%7C%Singapore Management University%7C%Singapore Institute of Technology%7C%Simei MRT%7C%51 Changi Village Rd%7C%Toppers Education Centre%7C%Waterway Point%7C%";
+
+                String locationsStringNew = startLocation + "%7C%" + locationsString;
 
                 Clustering c = new Clustering();
                 ArrayList<String> clusters = null;
 
-                ArrayList<String> finalPath = new ArrayList<>();
+                ArrayList<String> finalPath;
+
 
                 try {
-                    clusters = c.getClusters(numberOfDays, startLocation, locationsString);
+                    clusters = c.getClusters(numberOfDays, startLocation, locationsStringNew);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
+                assert clusters != null;
+                
                 for (String s : clusters) {
                     DistanceMatrixExample DM = new DistanceMatrixExample();
 
-                    double[][] distanceMatrix;
+                    double[][] distanceMatrix = new double[0][];
 
                     try {
                         distanceMatrix = DM.getDistances(s);
                     } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        e.printStackTrace();
                     }
 
                     HashMap<Integer, String> indexes = DM.getIndexes();
@@ -297,20 +327,33 @@ public class MainActivity4 extends AppCompatActivity {
 
                     int[] path = ts.solve(distanceMatrix, 0);
 
+                    finalPath = new ArrayList<>();
+
                     for (int i : path) {
                         finalPath.add(indexes.get(i));
                     }
+
+                    allPaths.add(finalPath);
 
                 }
 
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println(finalPath);
+                        System.out.println(allPaths);
+                        callback.onPathsReady(allPaths);
+                        //Intent intent = new Intent(MainActivity4.this, MainActivity5.class);
+                        //intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
+                        //intent.putExtra("ALL_PATHS", allPaths);
+                        //startActivity(intent);
                     }
                 });
+
             }
         });
+        // System.out.println("INSIDE GET PATH FUNCTION");
+        // System.out.println(allPaths);
+        return allPaths;
     }
 
     private void requetsWindowFeature ( int featureNoTitle){
@@ -348,3 +391,7 @@ public class MainActivity4 extends AppCompatActivity {
 //
 //                    System.out.println(path);
 //                }
+
+interface PathCallback {
+    void onPathsReady(ArrayList<ArrayList<String>> allPaths);
+}
