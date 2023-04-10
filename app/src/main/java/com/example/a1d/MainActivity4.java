@@ -166,44 +166,7 @@ public class MainActivity4 extends AppCompatActivity {
                         if (event.getAction() == MotionEvent.ACTION_UP) {
                             if (event.getX() >= iconLeft && event.getX() <= iconRight) {
                                 // Remove the EditText view from its parent layout
-                                Location = editText.getText().toString();
-                                SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment);
-                                mapFragment.getMapAsync(new OnMapReadyCallback() {
-                                    @Override
-                                    public void onMapReady(GoogleMap googleMap) {
-                                        // Map is ready to use
-                                        // Set the map type to be normal (default is hybrid)
-                                        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-                                        // Convert location name to latitude and longitude
-                                        Geocoder geocoder = new Geocoder(MainActivity4.this);
-                                        try {
-                                            List<Address> addresses = geocoder.getFromLocationName(Location, 1);
-                                            if (addresses.size() > 0) {
-                                                Address address = addresses.get(0);
-                                                LatLng location = new LatLng(address.getLatitude(), address.getLongitude());
-
-                                                // Move the camera to the desired location and zoom level
-                                                float zoomLevel = 12f;
-                                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel));
-
-                                                // Add a marker at the desired location
-                                                MarkerOptions markerOptions = new MarkerOptions()
-                                                        .position(location)
-                                                        .title(address.getLocality())
-                                                        .snippet(address.getAdminArea());
-                                                Marker marker = googleMap.addMarker(markerOptions);
-
-                                                // Remove the marker
-                                                marker.remove();
-                                            }
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                            ErrorView.setVisibility(View.VISIBLE);
-                                            System.out.println("ERROR No Location Found");
-                                        }
-                                    }
-                                });
                                 ((ViewGroup)editText.getParent()).removeView(editText);
                                 return true;
                             }
