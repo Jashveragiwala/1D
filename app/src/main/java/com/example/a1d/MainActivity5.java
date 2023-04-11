@@ -28,14 +28,7 @@ public class MainActivity5 extends AppCompatActivity {
     Button ButtonB;
     TextView txtView;
 
-    String numberOfDays = "0";
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
-        outState.putString("NUMBER_OF_DAYS", numberOfDays);
-        System.out.println();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +46,7 @@ public class MainActivity5 extends AppCompatActivity {
 
         ArrayList<ArrayList<String>> allPaths = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("ALL_PATHS");
         // log the data that we get
-        Log.d("BING", allPaths.toString());
-        Log.d("BING", numberOfDays.toString());
+
 
         System.out.println("HELLEefbirftborub");
         System.out.println(allPaths);

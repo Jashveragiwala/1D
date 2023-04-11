@@ -84,7 +84,6 @@ public class MainActivity4 extends AppCompatActivity {
         numberOfDays = getIntent().getStringExtra("NUMBER_OF_DAYS");
         startLocation = getIntent().getStringExtra("START_LOCATION");
 
-        System.out.println(numberOfDays);
         ButtonA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,21 +95,8 @@ public class MainActivity4 extends AppCompatActivity {
 
                     int noOfDays = Integer.parseInt(numberOfDays);
 
-                    System.out.println(locations);
-                    System.out.println(locationsString);
-
-                    System.out.println();
                     //ArrayList<ArrayList<String>> allPaths = getPath(noOfDays, startLocation, locationsString);
 
-                    //System.out.println("NOT INSIDE EXECUTABLE");
-                    //System.out.println(allPaths);
-
-
-
-
-
-                    System.out.println("NOT INSIDE EXECUTABLE");
-                    System.out.println();
 
                     getPath(noOfDays, startLocation, locationsString, new PathCallback() {
                         @Override
@@ -172,13 +158,9 @@ public class MainActivity4 extends AppCompatActivity {
                         int iconWidth = deleteIcon.getIntrinsicWidth();
                         int iconLeft = editText.getPaddingLeft();
                         int iconRight = iconLeft + iconWidth;
-                        System.out.println(viewWidth);
                         int addiconRight = viewWidth-editText.getPaddingRight();
                         int addiconWidth = AddIcon.getIntrinsicWidth();
                         int addiconleft =  viewWidth - editText.getPaddingRight() - addiconWidth;
-                        System.out.println(addiconleft);
-                        System.out.println(addiconRight);
-                        System.out.println(addiconWidth);
 
                         if (event.getAction() == MotionEvent.ACTION_UP) {
                             if (event.getX() >= iconLeft && event.getX() <= iconRight) {
@@ -190,6 +172,10 @@ public class MainActivity4 extends AppCompatActivity {
                                     selectedmarker = null;
                                     Toast.makeText(MainActivity4.this,"Location field deleted", Toast.LENGTH_LONG).show();
                                     numberoflocations--;
+                                }
+                                if (editText.getText().toString().equals("")){
+                                    ((ViewGroup)editText.getParent()).removeView(editText);
+                                    Toast.makeText(MainActivity4.this,"Location field deleted", Toast.LENGTH_LONG).show();
                                 }
                                 return true;
                             }
@@ -211,7 +197,6 @@ public class MainActivity4 extends AppCompatActivity {
                                             if (addresses.size() == 0) {
                                                 ErrorView.setVisibility(View.VISIBLE);
                                                 ErrorView.setText("No such Location Found");
-                                                System.out.println("ERROR No Location Found");
                                             }
                                             if (addresses.size() > 0) {
                                                 Address address = addresses.get(0);
@@ -246,7 +231,6 @@ public class MainActivity4 extends AppCompatActivity {
                                             e.printStackTrace();
                                             ErrorView.setVisibility(View.VISIBLE);
                                             ErrorView.setText("Please Enter Location");
-                                            System.out.println("ERROR No Location Found");
                                         }
                                     }
                                 });
@@ -296,7 +280,7 @@ public class MainActivity4 extends AppCompatActivity {
 
     }
 
-    ArrayList<ArrayList<String>> getPath(int numberOfDays, String startLocation, String locationsString, PathCallback callback) {
+    void getPath(int numberOfDays, String startLocation, String locationsString, PathCallback callback) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         final Handler handler = new Handler(Looper.getMainLooper());
 
@@ -367,46 +351,12 @@ public class MainActivity4 extends AppCompatActivity {
 
             }
         });
-        // System.out.println("INSIDE GET PATH FUNCTION");
-        // System.out.println(allPaths);
-        return allPaths;
     }
 
     private void requetsWindowFeature ( int featureNoTitle){
 
     }
 }
-
-//                Clustering c = new Clustering();
-//                ArrayList<String> clusters = null;
-//                try {
-//                    clusters = c.getClusters(numberOfDays, startLocation, locationsString);
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//
-//                for (String s : clusters) {
-//                    double[][] distanceMatrix = new double[0][];
-//                    DistanceMatrixExample DM = new DistanceMatrixExample();
-//                    HashMap<Integer, String> indexes = DM.indexes;
-//                    Integer origin = null;
-//
-//                    for (Map.Entry<Integer, String> entry : indexes.entrySet()) {
-//                        if (entry.getValue().equals(startLocation)) {
-//                            origin = entry.getKey();
-//                            break;
-//                        }
-//                    }
-//
-//                    try {
-//                        distanceMatrix = DM.getDistances(s);
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                    int[] path = TravellingSalesman.solve(distanceMatrix, origin);
-//
-//                    System.out.println(path);
-//                }
 
 interface PathCallback {
     void onPathsReady(ArrayList<ArrayList<String>> allPaths);
