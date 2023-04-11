@@ -68,7 +68,7 @@ public class    MainActivity6 extends AppCompatActivity {
 
         for (int i=0; i < currentPath.size(); i++) {
             if (i == currentPath.size() - 1)
-                finalOutput += currentPath.get(i).toUpperCase();
+                finalOutput += currentPath.get(i).toUpperCase() + " -> " + currentPath.get(0).toUpperCase();
             else
                 finalOutput += currentPath.get(i).toUpperCase() + " -> ";
 

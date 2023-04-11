@@ -296,52 +296,23 @@ public class MainActivity4 extends AppCompatActivity {
 
                 String locationsStringNew = startLocation + "%7C%" + locationsString;
 
-                Clustering c = new Clustering();
-                ArrayList<String> clusters = null;
+                ArrayList<ArrayList<String>> allPaths = null;
 
-                ArrayList<String> finalPath;
-
-
+                Trip t = new Trip(numberOfDays, startLocation, locationsStringNew);
+                t.setCluster();
                 try {
-                    clusters = c.getClusters(numberOfDays, startLocation, locationsStringNew);
+                    t.setItinerary();
+                    allPaths = t.getItinerary();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                assert clusters != null;
-                
-                for (String s : clusters) {
-                    DistanceMatrixExample DM = new DistanceMatrixExample();
-
-                    double[][] distanceMatrix = new double[0][];
-
-                    try {
-                        distanceMatrix = DM.getDistances(s);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    HashMap<Integer, String> indexes = DM.getIndexes();
-
-                    TravellingSalesman ts = new TravellingSalesman(distanceMatrix);
-
-                    int[] path = ts.solve(distanceMatrix, 0);
-
-                    finalPath = new ArrayList<>();
-
-                    for (int i : path) {
-                        finalPath.add(indexes.get(i));
-                    }
-
-                    allPaths.add(finalPath);
-
-                }
-
+                ArrayList<ArrayList<String>> finalAllPaths = allPaths;
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println(allPaths);
-                        callback.onPathsReady(allPaths);
+                        System.out.println(finalAllPaths);
+                        callback.onPathsReady(finalAllPaths);
                         //Intent intent = new Intent(MainActivity4.this, MainActivity5.class);
                         //intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
                         //intent.putExtra("ALL_PATHS", allPaths);
@@ -361,3 +332,45 @@ public class MainActivity4 extends AppCompatActivity {
 interface PathCallback {
     void onPathsReady(ArrayList<ArrayList<String>> allPaths);
 }
+
+
+//    Clustering c = new Clustering();
+//    ArrayList<String> clusters = null;
+//
+//    ArrayList<String> finalPath;
+//
+//
+//                try {
+//                        clusters = c.getClusters(numberOfDays, startLocation, locationsStringNew);
+//                        } catch (Exception e) {
+//                        e.printStackTrace();
+//                        }
+//
+//                        assert clusters != null;
+//
+//                        for (String s : clusters) {
+//                        DistanceMatrixExample DM = new DistanceMatrixExample();
+//
+//                        double[][] distanceMatrix = new double[0][];
+//
+//                        try {
+//                        distanceMatrix = DM.getDistances(s);
+//                        } catch (Exception e) {
+//                        e.printStackTrace();
+//                        }
+//
+//                        HashMap<Integer, String> indexes = DM.getIndexes();
+//
+//        TravellingSalesman ts = new TravellingSalesman();
+//
+//        int[] path = ts.solve(distanceMatrix, 0);
+//
+//        finalPath = new ArrayList<>();
+//
+//        for (int i : path) {
+//        finalPath.add(indexes.get(i));
+//        }
+//
+//        allPaths.add(finalPath);
+//
+//        }

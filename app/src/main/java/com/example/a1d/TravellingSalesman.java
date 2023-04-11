@@ -7,12 +7,6 @@ public class TravellingSalesman {
     public int[] bestPath; // stores the best path found so far
     public double bestCost = Double.POSITIVE_INFINITY; // stores the cost of the best path
 
-    public double[][] distances;
-
-    TravellingSalesman(double[][] distances) {
-        this.distances = distances;
-    }
-
     public int[] solve(double[][] distances, int origin) {
         int n = distances.length;
         int[] path = new int[n];
@@ -64,7 +58,7 @@ public class TravellingSalesman {
 
         //System.out.println(Arrays.deepToString(distanceMatrix));
 
-        TravellingSalesman ts = new TravellingSalesman(distanceMatrix);
+        TravellingSalesman ts = new TravellingSalesman();
 
         int[] path = ts.solve(distanceMatrix, 0);
 
