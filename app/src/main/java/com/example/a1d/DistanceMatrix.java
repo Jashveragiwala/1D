@@ -165,13 +165,4 @@ public class DistanceMatrix {
         return locations;
     }
 
-
-    public static void main(String[] args) throws Exception {
-        DistanceMatrixExample DM = new DistanceMatrixExample();
-        int originArrLen = DM.originArrLen;
-        HashMap<Integer, String> indexes = DM.getIndexes();
-        System.out.println(indexes);
-
-    }
-
 }

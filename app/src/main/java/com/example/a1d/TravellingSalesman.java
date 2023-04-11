@@ -50,35 +50,4 @@ public class TravellingSalesman {
     }
 
 
-    public static void main(String[] args) throws Exception {
-        DistanceMatrixExample DM = new DistanceMatrixExample();
-        //double[][] distanceMatrix = DM.getDistances("SUTD%7C%Simei MRT%7C%51 Changi Village Rd%7C%Waterway Point%7C%Toppers Education Centre%7C%Singapore Management University%7C%Global Indian International School, Singapore");
-        double[][] distanceMatrix= DM.getDistances("SUTD%7C%NUS%7C%Singapore Institute of Technology%7C%HomeTeamNS Bukit Batok%7C%NTU%7C%");
-        HashMap<Integer, String> indexes = DM.indexes;
-
-        //System.out.println(Arrays.deepToString(distanceMatrix));
-
-        TravellingSalesman ts = new TravellingSalesman();
-
-        int[] path = ts.solve(distanceMatrix, 0);
-
-//        List<Integer> shortestPath = shortestPath(distanceMatrix, 0);
-        System.out.println(indexes);
-//        System.out.println(shortestPath);
-        // System.out.println(indexes.get(path[0]));
-
-//       System.out.println(indexes.size());
-
-//        System.out.println(path.length);
-        ArrayList<String> finalPath = new ArrayList<>();
-
-        for(int i: path) {
-            finalPath.add(indexes.get(i));
-        }
-        System.out.println(finalPath);
-
-        System.out.println(Arrays.toString(path));
-
-    }
-
 }
