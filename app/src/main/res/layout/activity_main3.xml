@@ -70,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
-        android:hint="Location of Your Hotel"
+        android:hint="Start Location"
         android:textAlignment="center"
         android:textColorHint="#18C0C1"
         app:boxBackgroundColor="@color/white"

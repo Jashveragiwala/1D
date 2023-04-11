@@ -58,7 +58,7 @@
 
     <ScrollView
         android:layout_width="348dp"
-        android:layout_height="339dp"
+        android:layout_height="400dp"
         app:layout_constraintBottom_toTopOf="@+id/addlocation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -63,6 +63,7 @@ public class MainActivity4 extends AppCompatActivity {
     String Location;
     TextView ErrorView;
     Marker selectedmarker = null;
+    int numberoflocations = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,40 +87,46 @@ public class MainActivity4 extends AppCompatActivity {
         ButtonA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (numberoflocations >= Integer.parseInt(numberOfDays)){
+                    ErrorView.setVisibility(View.GONE);
+                    for (String s : locations) {
+                        locationsString += s + "%7C%";
+                    }
+
+                    int noOfDays = Integer.parseInt(numberOfDays);
+
+                    System.out.println(locations);
+                    System.out.println(locationsString);
+
+                    System.out.println();
+                    //ArrayList<ArrayList<String>> allPaths = getPath(noOfDays, startLocation, locationsString);
+
+                    //System.out.println("NOT INSIDE EXECUTABLE");
+                    //System.out.println(allPaths);
 
 
-                for (String s : locations) {
-                    locationsString += s + "%7C%";
+
+
+
+                    System.out.println("NOT INSIDE EXECUTABLE");
+                    System.out.println();
+
+                    getPath(noOfDays, startLocation, locationsString, new PathCallback() {
+                        @Override
+                        public void onPathsReady(ArrayList<ArrayList<String>> allPaths) {
+                            System.out.println(allPaths);
+                            Intent intent = new Intent(MainActivity4.this, MainActivity5.class);
+                            intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
+                            intent.putExtra("ALL_PATHS", allPaths);
+                            startActivity(intent);
+                        }
+                    });
                 }
 
-                int noOfDays = Integer.parseInt(numberOfDays);
-
-                System.out.println(locations);
-                System.out.println(locationsString);
-
-                System.out.println();
-                //ArrayList<ArrayList<String>> allPaths = getPath(noOfDays, startLocation, locationsString);
-
-                //System.out.println("NOT INSIDE EXECUTABLE");
-                //System.out.println(allPaths);
-
-
-
-
-
-                System.out.println("NOT INSIDE EXECUTABLE");
-                System.out.println();
-
-                getPath(noOfDays, startLocation, locationsString, new PathCallback() {
-                    @Override
-                    public void onPathsReady(ArrayList<ArrayList<String>> allPaths) {
-                        System.out.println(allPaths);
-                        Intent intent = new Intent(MainActivity4.this, MainActivity5.class);
-                        intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
-                        intent.putExtra("ALL_PATHS", allPaths);
-                        startActivity(intent);
-                    }
-                });
+                else {
+                    ErrorView.setVisibility(View.VISIBLE);
+                    ErrorView.setText("Enter More Locations");
+                }
 
             }
         });
@@ -127,7 +134,7 @@ public class MainActivity4 extends AppCompatActivity {
         MaterialButton AddLoc = findViewById(R.id.moreinput);
         AddLoc.setOnClickListener(new View.OnClickListener() {
 
-            int count = 1;
+
 
             @Override
             public void onClick(View view) {
@@ -138,7 +145,6 @@ public class MainActivity4 extends AppCompatActivity {
                 layoutParams.setMargins(0, 10, 10, 10); // set the top margin to 20 pixels
                 editText.setLayoutParams(layoutParams);
                 editText.setHint("Location");
-                count++;
                 editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
                 editText.setPadding(100, 2, 100, 2);
                 editText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -179,6 +185,7 @@ public class MainActivity4 extends AppCompatActivity {
                                     ((ViewGroup)editText.getParent()).removeView(editText);
                                     selectedmarker.remove();
                                     selectedmarker = null;
+                                    numberoflocations--;
                                 }
                                 return true;
                             }
@@ -199,6 +206,7 @@ public class MainActivity4 extends AppCompatActivity {
                                             List<Address> addresses = geocoder.getFromLocationName(Location, 1);
                                             if (addresses.size() == 0) {
                                                 ErrorView.setVisibility(View.VISIBLE);
+                                                ErrorView.setText("No such Location Found");
                                                 System.out.println("ERROR No Location Found");
                                             }
                                             if (addresses.size() > 0) {
@@ -217,6 +225,7 @@ public class MainActivity4 extends AppCompatActivity {
                                                         .snippet(address.getAdminArea());
                                                 googleMap.addMarker(markerOptions);
                                                 locations.add(Location);
+                                                numberoflocations++;
                                                 ErrorView.setVisibility(View.GONE);
 
                                                 googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -231,6 +240,7 @@ public class MainActivity4 extends AppCompatActivity {
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                             ErrorView.setVisibility(View.VISIBLE);
+                                            ErrorView.setText("Please Enter Location");
                                             System.out.println("ERROR No Location Found");
                                         }
                                     }
