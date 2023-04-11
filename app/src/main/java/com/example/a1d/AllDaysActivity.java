@@ -7,8 +7,6 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
-import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,8 +20,8 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 
-// MainActivity5 -> Number of Days (Final Optimized path)
-public class MainActivity5 extends AppCompatActivity {
+// AllDaysActivity -> Number of Days (Final Optimized path)
+public class AllDaysActivity extends AppCompatActivity {
     Button ButtonA;
     Button ButtonB;
     TextView txtView;
@@ -37,19 +35,13 @@ public class MainActivity5 extends AppCompatActivity {
         requetsWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_main5);
+        setContentView(R.layout.activity_all_days);
         txtView = (TextView) findViewById(R.id.name5);
-//        ButtonA = (Button) findViewById(R.id.days);
-        // ButtonB = (Button) findViewById(R.id.addlocation);
 
         String numberOfDays = getIntent().getStringExtra("NUMBER_OF_DAYS");
 
         ArrayList<ArrayList<String>> allPaths = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("ALL_PATHS");
         // log the data that we get
-
-
-        System.out.println("HELLEefbirftborub");
-        System.out.println(allPaths);
 
 
         int num = Integer.parseInt(numberOfDays);
@@ -97,7 +89,7 @@ public class MainActivity5 extends AppCompatActivity {
 
                         // ArrayList<ArrayList<String>> allPathsNew = allPaths;
 
-                        Intent intent = new Intent(MainActivity5.this,MainActivity6.class);
+                        Intent intent = new Intent(AllDaysActivity.this, FinalPathActivity.class);
                         intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
                         intent.putExtra("COMPLETE_PATH", allPaths);
                         intent.putExtra("INDEX", finalI);
@@ -109,26 +101,6 @@ public class MainActivity5 extends AppCompatActivity {
 
         }
 
-//        ButtonA.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intent = new Intent(MainActivity5.this,MainActivity6.class);
-//                startActivity(intent);
-//            }}
-//        );
-//        ButtonB.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//
-//                System.out.println("yoyoyoyo");
-//                System.out.println(allPaths);
-//
-//                Intent intent = new Intent(MainActivity5.this,MainActivity4.class);
-//                intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
-//
-//                startActivity(intent);
-//            }}
-//        );
 
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
@@ -139,7 +111,7 @@ public class MainActivity5 extends AppCompatActivity {
                 switch(id){
                     case R.id.nav_home:
                         // Handle click on "Home" button
-                        Intent intent = new Intent(MainActivity5.this, HomePageActivity.class);
+                        Intent intent = new Intent(AllDaysActivity.this, HomePageActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_journeys:
@@ -147,7 +119,7 @@ public class MainActivity5 extends AppCompatActivity {
                         ArrayList<ArrayList<String>> allPaths = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("ALL_PATHS");
                         System.out.println("heyeyeyeye");
                         System.out.println(allPaths);
-                        Intent intent_journeys = new Intent((MainActivity5.this), MainActivity5.class);
+                        Intent intent_journeys = new Intent((AllDaysActivity.this), AllDaysActivity.class);
                         intent_journeys.putExtra("NUMBER_OF_DAYS", numberOfDays);
                         intent_journeys.putExtra("COMPLETE_PATH", allPaths);
                         startActivity(intent_journeys);

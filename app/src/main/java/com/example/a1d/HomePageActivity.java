@@ -39,7 +39,7 @@ public class HomePageActivity extends AppCompatActivity{
             public void onClick(View view){
                 String TAG = "HomePage";
                 Log.d(TAG, "onClick: get started is clicked"); // logcat logs that button is clicked
-                Intent intent = new Intent(HomePageActivity.this, MainActivity3.class);
+                Intent intent = new Intent(HomePageActivity.this, CreateJourneyActivity.class);
                 startActivity(intent);
             }}
         );
@@ -60,7 +60,7 @@ public class HomePageActivity extends AppCompatActivity{
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
                         Intent intent_journeys = new Intent((HomePageActivity.this),
-                                MainActivity5.class);
+                                AllDaysActivity.class);
                         intent_journeys.putExtra("NUMBER_OF_DAYS", numberOfDays);
                         startActivity(intent_journeys);
                         return true;

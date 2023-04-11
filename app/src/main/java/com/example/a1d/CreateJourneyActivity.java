@@ -14,20 +14,18 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.IOException;
 import java.util.List;
 
-// MainActivity3 -> CreateJourney
+// CreateJourneyActivity -> CreateJourney
 
-public class MainActivity3 extends AppCompatActivity {
+public class CreateJourneyActivity extends AppCompatActivity {
     Button ButtonA;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +34,7 @@ public class MainActivity3 extends AppCompatActivity {
         requetsWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.activity_create_journey);
         ButtonA = (Button) findViewById(R.id.done);
 
         int resultCode = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
@@ -50,9 +48,6 @@ public class MainActivity3 extends AppCompatActivity {
             GoogleApiAvailability.getInstance().getErrorDialog(this, resultCode, 0).show();
         }
 
-        //TODO 1: get the location that the person searched using a searchview
-        //TODO 2: check whether the location is a valid location
-        //TODO 3: pass the location to MainActivity4 and display it on the map
         ButtonA.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -76,7 +71,7 @@ public class MainActivity3 extends AppCompatActivity {
                         textField2.setError("Field is required");
                     }
                 } else {
-                    Geocoder geocoder = new Geocoder(MainActivity3.this);
+                    Geocoder geocoder = new Geocoder(CreateJourneyActivity.this);
                     try {
                         List<Address> addresses = geocoder.getFromLocationName(startLocation, 1);
                         if (addresses.size() > 0) {
@@ -86,7 +81,7 @@ public class MainActivity3 extends AppCompatActivity {
                                 try {
                                     int numDays = Integer.parseInt(numberOfDays); // try to parse the string as an integer
                                     textField3.setError(null); // clear any previous error message
-                                    Intent intent2 = new Intent(MainActivity3.this,MainActivity4.class);
+                                    Intent intent2 = new Intent(CreateJourneyActivity.this, AddLocationActivity.class);
                                     intent2.putExtra("NUMBER_OF_DAYS", numberOfDays);
                                     intent2.putExtra("START_LOCATION", startLocation);
                                     startActivity(intent2);
@@ -118,13 +113,13 @@ public class MainActivity3 extends AppCompatActivity {
                 switch(id){
                     case R.id.nav_home:
                         // Handle click on "Home" button
-                        Intent intent = new Intent(MainActivity3.this, HomePageActivity.class);
+                        Intent intent = new Intent(CreateJourneyActivity.this, HomePageActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
                         String numberOfDays = "0";
-                        Intent intent_journeys = new Intent((MainActivity3.this), MainActivity5.class);
+                        Intent intent_journeys = new Intent((CreateJourneyActivity.this), AllDaysActivity.class);
                         intent_journeys.putExtra("NUMBER_OF_DAYS", numberOfDays);
                         startActivity(intent_journeys);
                         return true;

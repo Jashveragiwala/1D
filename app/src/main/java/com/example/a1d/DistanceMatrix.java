@@ -128,8 +128,6 @@ public class DistanceMatrix {
 
         String output = response.body().string();
 
-        //System.out.println(output);
-
         JSONParser parser = new JSONParser();
         Object obj = parser.parse(output);
         JSONObject jsonobj = (JSONObject) obj;

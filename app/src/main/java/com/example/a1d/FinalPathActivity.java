@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -21,7 +20,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.navigation.NavigationBarView;
@@ -31,10 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-// MainActivity6 -> Page for each Day in Final Optimized path
-public class    MainActivity6 extends AppCompatActivity {
-//    Button ButtonB;
-//    Button ButtonC;
+// FinalPathActivity -> Page for each Day in Final Optimized path
+public class FinalPathActivity extends AppCompatActivity {
     TextView txtView;
     TextView path;
     String Location;
@@ -42,7 +38,7 @@ public class    MainActivity6 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_main6);
+        setContentView(R.layout.activity_final_path);
         requetsWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
@@ -74,7 +70,7 @@ public class    MainActivity6 extends AppCompatActivity {
 
             String locationName = currentPath.get(i);
             System.out.println(locationName);
-            Geocoder geocoder = new Geocoder(MainActivity6.this);
+            Geocoder geocoder = new Geocoder(FinalPathActivity.this);
             try {
                 List<Address> addresses = geocoder.getFromLocationName(locationName, 1);
                 if (addresses.size() > 0) {
@@ -104,7 +100,7 @@ public class    MainActivity6 extends AppCompatActivity {
                 // Add markers for all locations
                 for (int i = 0; i < locations.size(); i++) {
                     LatLng location = locations.get(i);
-                    Geocoder geocoder = new Geocoder(MainActivity6.this);
+                    Geocoder geocoder = new Geocoder(FinalPathActivity.this);
                     try {
                         List<Address> addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1);
                         if (addresses.size() > 0) {
@@ -135,32 +131,6 @@ public class    MainActivity6 extends AppCompatActivity {
         txtView.setText("Day " + dayNo);
         path.setText(finalOutput);
 
-        // System.out.println("HELLO");
-        // System.out.println(allPaths);
-        // System.out.println(index);
-
-        // System.out.println(allPaths.get(index));
-
-//        ButtonB = (Button) findViewById(R.id.button3);
-//        ButtonC = (Button) findViewById(R.id.button4);
-
-//        ButtonB.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intent = new Intent(MainActivity6.this,MainActivity.class);
-//                startActivity(intent);
-//            }}
-//        );
-//
-//        ButtonC.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                Intent intent = new Intent(MainActivity6.this,MainActivity2.class);
-//                startActivity(intent);
-//            }}
-//        );
-
-
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -169,12 +139,12 @@ public class    MainActivity6 extends AppCompatActivity {
                 switch(id){
                     case R.id.nav_home:
                         // Handle click on "Home" button
-                        Intent intent = new Intent(MainActivity6.this, HomePageActivity.class);
+                        Intent intent = new Intent(FinalPathActivity.this, HomePageActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        Intent intent_journeys = new Intent(MainActivity6.this, MainActivity5.class);
+                        Intent intent_journeys = new Intent(FinalPathActivity.this, AllDaysActivity.class);
                         intent_journeys.putExtra("NUMBER_OF_DAYS", numberOfDays);
                         intent_journeys.putExtra("COMPLETE_PATH", allPaths);
                         startActivity(intent_journeys);

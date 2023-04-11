@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">1D</string>
-    <string name="create_journey">Create Journey</string>
     <string name="Home"><font size="15"><b>Home</b></font></string>
     <string name="Journeys"><font size="15"><b>Journeys</b></font></string>
 </resources>

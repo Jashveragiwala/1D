@@ -2,13 +2,10 @@ package com.example.a1d;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -27,12 +24,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.a1d.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -44,16 +38,13 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-// MainActivity4 -> Add Locations
-public class MainActivity4 extends AppCompatActivity {
+// AddLocationActivity -> Add Locations
+public class AddLocationActivity extends AppCompatActivity {
     Button ButtonA;
     MaterialButton AddLoc;
 
@@ -73,7 +64,7 @@ public class MainActivity4 extends AppCompatActivity {
         requetsWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_main4);
+        setContentView(R.layout.activity_add_location);
         ErrorView = findViewById(R.id.error);
         ErrorView.setVisibility(View.GONE);
         ButtonA = (Button) findViewById(R.id.doneadding);
@@ -95,14 +86,11 @@ public class MainActivity4 extends AppCompatActivity {
 
                     int noOfDays = Integer.parseInt(numberOfDays);
 
-                    //ArrayList<ArrayList<String>> allPaths = getPath(noOfDays, startLocation, locationsString);
-
-
                     getPath(noOfDays, startLocation, locationsString, new PathCallback() {
                         @Override
                         public void onPathsReady(ArrayList<ArrayList<String>> allPaths) {
                             System.out.println(allPaths);
-                            Intent intent = new Intent(MainActivity4.this, MainActivity5.class);
+                            Intent intent = new Intent(AddLocationActivity.this, AllDaysActivity.class);
                             intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
                             intent.putExtra("ALL_PATHS", allPaths);
                             startActivity(intent);
@@ -121,11 +109,9 @@ public class MainActivity4 extends AppCompatActivity {
         MaterialButton AddLoc = findViewById(R.id.moreinput);
         AddLoc.setOnClickListener(new View.OnClickListener() {
 
-
-
             @Override
             public void onClick(View view) {
-                EditText editText = new EditText(MainActivity4.this);
+                EditText editText = new EditText(AddLocationActivity.this);
                 editText.setId(View.generateViewId());
 
                 LinearLayoutCompat.LayoutParams layoutParams = new LinearLayoutCompat.LayoutParams(1220, 100);
@@ -141,13 +127,13 @@ public class MainActivity4 extends AppCompatActivity {
                 editText.getGravity();
                 editText.setBackgroundColor(Color.parseColor("#FFFFFF"));
 
-                Toast.makeText(MainActivity4.this,"New Location field added", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddLocationActivity.this,"New Location field added", Toast.LENGTH_LONG).show();
 
                 // delete feature
 
-                Drawable deleteIcon = ContextCompat.getDrawable(MainActivity4.this, R.drawable.baseline_remove_24);
+                Drawable deleteIcon = ContextCompat.getDrawable(AddLocationActivity.this, R.drawable.baseline_remove_24);
                 deleteIcon.setBounds(0, 0, 100, 50);
-                Drawable AddIcon = ContextCompat.getDrawable(MainActivity4.this, R.drawable.baseline_add_task_24);
+                Drawable AddIcon = ContextCompat.getDrawable(AddLocationActivity.this, R.drawable.baseline_add_task_24);
                 AddIcon.setBounds(0, 0, 90, 50);
                 editText.setCompoundDrawables(deleteIcon, null, AddIcon, null);
 
@@ -170,12 +156,12 @@ public class MainActivity4 extends AppCompatActivity {
                                     ((ViewGroup)editText.getParent()).removeView(editText);
                                     selectedmarker.remove();
                                     selectedmarker = null;
-                                    Toast.makeText(MainActivity4.this,"Location field deleted", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(AddLocationActivity.this,"Location field deleted", Toast.LENGTH_LONG).show();
                                     numberoflocations--;
                                 }
                                 if (editText.getText().toString().equals("")){
                                     ((ViewGroup)editText.getParent()).removeView(editText);
-                                    Toast.makeText(MainActivity4.this,"Location field deleted", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(AddLocationActivity.this,"Location field deleted", Toast.LENGTH_LONG).show();
                                 }
                                 return true;
                             }
@@ -191,7 +177,7 @@ public class MainActivity4 extends AppCompatActivity {
                                         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
                                         // Convert location name to latitude and longitude
-                                        Geocoder geocoder = new Geocoder(MainActivity4.this);
+                                        Geocoder geocoder = new Geocoder(AddLocationActivity.this);
                                         try {
                                             List<Address> addresses = geocoder.getFromLocationName(Location, 1);
                                             if (addresses.size() == 0) {
@@ -214,7 +200,7 @@ public class MainActivity4 extends AppCompatActivity {
                                                         .snippet(address.getAdminArea());
                                                 googleMap.addMarker(markerOptions);
                                                 locations.add(Location);
-                                                Toast.makeText(MainActivity4.this,"Location added on map", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(AddLocationActivity.this,"Location added on map", Toast.LENGTH_LONG).show();
                                                 numberoflocations++;
                                                 ErrorView.setVisibility(View.GONE);
 
@@ -249,11 +235,6 @@ public class MainActivity4 extends AppCompatActivity {
             }
         });
 
-        //TODO 4: Check if the user inserted a valid location using google autocomplete
-        //TODO 5: Add that location to the map view fragment
-        //TODO 6: Give the user the option to remove the location
-        //TODO 7: Store these locations into a JSON for the backend to receive
-
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -263,12 +244,12 @@ public class MainActivity4 extends AppCompatActivity {
                 switch (id) {
                     case R.id.nav_home:
                         // Handle click on "Home" button
-                        Intent intent = new Intent(MainActivity4.this, HomePageActivity.class);
+                        Intent intent = new Intent(AddLocationActivity.this, HomePageActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        Intent intent_journeys = new Intent((MainActivity4.this), MainActivity5.class);
+                        Intent intent_journeys = new Intent((AddLocationActivity.this), AllDaysActivity.class);
                         intent_journeys.putExtra("NUMBER_OF_DAYS", numberOfDays);
                         startActivity(intent_journeys);
                         return true;
@@ -283,8 +264,6 @@ public class MainActivity4 extends AppCompatActivity {
     void getPath(int numberOfDays, String startLocation, String locationsString, PathCallback callback) {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         final Handler handler = new Handler(Looper.getMainLooper());
-
-        final ArrayList<ArrayList<String>> allPaths = new ArrayList<>();
 
         executor.execute(new Runnable() {
 
@@ -328,49 +307,3 @@ public class MainActivity4 extends AppCompatActivity {
 
     }
 }
-
-interface PathCallback {
-    void onPathsReady(ArrayList<ArrayList<String>> allPaths);
-}
-
-
-//    Clustering c = new Clustering();
-//    ArrayList<String> clusters = null;
-//
-//    ArrayList<String> finalPath;
-//
-//
-//                try {
-//                        clusters = c.getClusters(numberOfDays, startLocation, locationsStringNew);
-//                        } catch (Exception e) {
-//                        e.printStackTrace();
-//                        }
-//
-//                        assert clusters != null;
-//
-//                        for (String s : clusters) {
-//                        DistanceMatrixExample DM = new DistanceMatrixExample();
-//
-//                        double[][] distanceMatrix = new double[0][];
-//
-//                        try {
-//                        distanceMatrix = DM.getDistances(s);
-//                        } catch (Exception e) {
-//                        e.printStackTrace();
-//                        }
-//
-//                        HashMap<Integer, String> indexes = DM.getIndexes();
-//
-//        TravellingSalesman ts = new TravellingSalesman();
-//
-//        int[] path = ts.solve(distanceMatrix, 0);
-//
-//        finalPath = new ArrayList<>();
-//
-//        for (int i : path) {
-//        finalPath.add(indexes.get(i));
-//        }
-//
-//        allPaths.add(finalPath);
-//
-//        }

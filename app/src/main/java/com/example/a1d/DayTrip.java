@@ -24,7 +24,6 @@ public class DayTrip {
         for (int i : path) {
             finalPath.add(indexes.get(i));
         }
-        // System.out.println(finalPath);
         return finalPath;
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity4"
+    tools:context=".AddLocationActivity"
     android:background="#CEE4F8"
     android:padding="0sp"
     android:orientation="vertical"
@@ -79,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/error"
-        tools:layout="@layout/activity_main4" />
+        tools:layout="@layout/activity_add_location" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/doneadding"
