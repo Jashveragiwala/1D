@@ -9,6 +9,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -49,11 +50,16 @@ public class    MainActivity6 extends AppCompatActivity {
 
 
         String numberOfDays = getIntent().getStringExtra("NUMBER_OF_DAYS");
+        // log the number of days
+        Log.d("BING", numberOfDays);
+
         txtView = (TextView) findViewById(R.id.name6);
         path = (TextView) findViewById(R.id.pathout);
 
         ArrayList<ArrayList<String>> allPaths = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("COMPLETE_PATH");
         int index = getIntent().getIntExtra("INDEX", 0);
+
+        Log.d("BING", allPaths.toString());
 
         String finalOutput = "";
 

@@ -30,6 +30,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.a1d.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -154,6 +155,8 @@ public class MainActivity4 extends AppCompatActivity {
                 editText.getGravity();
                 editText.setBackgroundColor(Color.parseColor("#FFFFFF"));
 
+                Toast.makeText(MainActivity4.this,"New Location field added", Toast.LENGTH_LONG).show();
+
                 // delete feature
 
                 Drawable deleteIcon = ContextCompat.getDrawable(MainActivity4.this, R.drawable.baseline_remove_24);
@@ -185,6 +188,7 @@ public class MainActivity4 extends AppCompatActivity {
                                     ((ViewGroup)editText.getParent()).removeView(editText);
                                     selectedmarker.remove();
                                     selectedmarker = null;
+                                    Toast.makeText(MainActivity4.this,"Location field deleted", Toast.LENGTH_LONG).show();
                                     numberoflocations--;
                                 }
                                 return true;
@@ -225,6 +229,7 @@ public class MainActivity4 extends AppCompatActivity {
                                                         .snippet(address.getAdminArea());
                                                 googleMap.addMarker(markerOptions);
                                                 locations.add(Location);
+                                                Toast.makeText(MainActivity4.this,"Location added on map", Toast.LENGTH_LONG).show();
                                                 numberoflocations++;
                                                 ErrorView.setVisibility(View.GONE);
 
@@ -256,6 +261,7 @@ public class MainActivity4 extends AppCompatActivity {
                 LinearLayoutCompat linearLayout = (LinearLayoutCompat) findViewById(R.id.search_bar);
                 linearLayout.setGravity(Gravity.CENTER);
                 linearLayout.addView(editText);
+
             }
         });
 

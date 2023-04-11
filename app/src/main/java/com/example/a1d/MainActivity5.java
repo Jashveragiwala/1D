@@ -7,6 +7,8 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
+import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +27,16 @@ public class MainActivity5 extends AppCompatActivity {
     Button ButtonA;
     Button ButtonB;
     TextView txtView;
+
+    String numberOfDays = "0";
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        outState.putString("NUMBER_OF_DAYS", numberOfDays);
+        System.out.println();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +52,13 @@ public class MainActivity5 extends AppCompatActivity {
         String numberOfDays = getIntent().getStringExtra("NUMBER_OF_DAYS");
 
         ArrayList<ArrayList<String>> allPaths = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("ALL_PATHS");
+        // log the data that we get
+        Log.d("BING", allPaths.toString());
+        Log.d("BING", numberOfDays.toString());
 
         System.out.println("HELLEefbirftborub");
         System.out.println(allPaths);
+
 
         int num = Integer.parseInt(numberOfDays);
         System.out.println(num);
