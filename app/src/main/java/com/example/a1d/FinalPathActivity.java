@@ -117,7 +117,7 @@ public class FinalPathActivity extends AppCompatActivity {
                 }
 
                 GeoApiContext context = new GeoApiContext.Builder()
-                        .apiKey("AIzaSyD03pQpPpanpGgrJyTfCagPxTLAya8pQws")
+                        .apiKey("AIzaSyA33nOEMpoyqOmg32p0znGLy3JjYGldspE")
                         .build();
 
                 DirectionsApiRequest req = DirectionsApi.newRequest(context);
