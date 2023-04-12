@@ -11,7 +11,7 @@
     android:gravity="center">
 
     <TextView
-        android:id="@+id/name5"
+        android:id="@+id/FinalOptimisedPath"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -25,20 +25,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/addlocation"
-        android:layout_width="250sp"
-        android:layout_height="60dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginBottom="35dp"
-        android:backgroundTint="@color/teal_700"
-        android:text="Add Location"
-        android:textSize="25sp"
-        app:cornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name5" />
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/addlocation"-->
+<!--        android:layout_width="250sp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_marginTop="500dp"-->
+<!--        android:layout_marginBottom="35dp"-->
+<!--        android:backgroundTint="@color/teal_700"-->
+<!--        android:text="Add Location"-->
+<!--        android:textSize="25sp"-->
+<!--        app:cornerRadius="10dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/FinalOptimisedPath" />-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
@@ -59,17 +59,16 @@
     <ScrollView
         android:layout_width="348dp"
         android:layout_height="400dp"
-        app:layout_constraintBottom_toTopOf="@+id/addlocation"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name5">
+        app:layout_constraintTop_toBottomOf="@+id/FinalOptimisedPath">
 
         <LinearLayout
-            android:id="@+id/dayadd"
+            android:id="@+id/addDay"
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/addlocation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"

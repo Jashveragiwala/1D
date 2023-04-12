@@ -31,9 +31,9 @@ import java.util.List;
 
 // FinalPathActivity -> Page for each Day in Final Optimized path
 public class FinalPathActivity extends AppCompatActivity {
-    TextView txtView;
-    TextView path;
-    String Location;
+    TextView textViewDayNumber;
+    TextView textViewPath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +49,8 @@ public class FinalPathActivity extends AppCompatActivity {
         // log the number of days
         Log.d("BING", numberOfDays);
 
-        txtView = (TextView) findViewById(R.id.name6);
-        path = (TextView) findViewById(R.id.pathout);
+        textViewDayNumber = findViewById(R.id.dayNumber);
+        textViewPath = findViewById(R.id.path);
 
         ArrayList<ArrayList<String>> allPaths = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("COMPLETE_PATH");
         int index = getIntent().getIntExtra("INDEX", 0);
@@ -128,8 +128,8 @@ public class FinalPathActivity extends AppCompatActivity {
             }
         });
         int dayNo = index + 1;
-        txtView.setText("Day " + dayNo);
-        path.setText(finalOutput);
+        textViewDayNumber.setText("Day " + dayNo);
+        textViewPath.setText(finalOutput);
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {

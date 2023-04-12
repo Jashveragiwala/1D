@@ -12,7 +12,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/moreinput"
+        android:id="@+id/AddLocation"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:backgroundTint="@color/white"
@@ -47,7 +47,7 @@
         android:paddingRight="0dp"
         app:flow_horizontalAlign="center"
         app:layout_constraintBottom_toTopOf="@+id/error"
-        app:layout_constraintTop_toBottomOf="@+id/moreinput"
+        app:layout_constraintTop_toBottomOf="@+id/AddLocation"
         tools:layout_editor_absoluteX="7dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -75,14 +75,14 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginTop="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/doneadding"
+        app:layout_constraintBottom_toTopOf="@+id/doneAdding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/error"
         tools:layout="@layout/activity_add_location" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/doneadding"
+        android:id="@+id/doneAdding"
         android:layout_width="250sp"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
@@ -114,66 +114,3 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--<?xml version="1.0" encoding="utf-8"?>-->
-    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--    xmlns:tools="http://schemas.android.com/tools"-->
-    <!--    android:id="@+id/activity_main"-->
-    <!--    android:layout_width="match_parent"-->
-    <!--    android:layout_height="match_parent"-->
-    <!--    tools:context=".MainActivity">-->
-
-    <!--    <EditText-->
-    <!--        android:id="@+id/inputone"-->
-    <!--        android:layout_width="350dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="31dp"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:layout_marginEnd="30dp"-->
-    <!--        android:width="0sp"-->
-    <!--        android:height="0sp"-->
-    <!--        android:background="#FFFFFF"-->
-    <!--        android:inputType="textPersonName"-->
-    <!--        android:paddingTop="2sp"-->
-    <!--        android:paddingBottom="2sp"-->
-
-    <!--        android:textColor="#1F1F1F"-->
-    <!--        android:textColorHint="#1F1F1F"-->
-    <!--        android:textSize="20sp"-->
-    <!--         />-->
-
-    <!--    <fragment-->
-    <!--        android:id="@+id/map_fragment"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        class="com.google.android.gms.maps.SupportMapFragment"/>-->
-
-    <!--    <EditText-->
-    <!--        android:id="@+id/search_bar"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:hint="Search for a location"-->
-    <!--        android:inputType="text"-->
-    <!--        android:maxLines="1"-->
-    <!--        android:singleLine="true"-->
-    <!--        android:layout_alignParentTop="true"/>-->
-
-    <!--</RelativeLayout>-->
-
-    <!--<EditText-->
-    <!--android:id="@+id/inputone"-->
-    <!--android:layout_width="350dp"-->
-    <!--android:layout_height="34dp"-->
-    <!--android:layout_marginTop="0dp"-->
-    <!--android:width="0sp"-->
-    <!--android:height="0sp"-->
-    <!--android:background="#FFFFFF"-->
-    <!--android:hint="Location"-->
-    <!--android:inputType="textPersonName"-->
-    <!--android:paddingLeft="22dp"-->
-    <!--android:paddingTop="2dp"-->
-    <!--android:paddingBottom="2dp"-->
-    <!--android:textAlignment="center"-->
-    <!--android:textColor="#1F1F1F"-->
-    <!--android:textColorHint="#1F1F1F"-->
-    <!--android:textSize="20dp" />-->

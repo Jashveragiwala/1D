@@ -11,7 +11,7 @@
     android:gravity="center">
 
     <TextView
-        android:id="@+id/name6"
+        android:id="@+id/dayNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -24,9 +24,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/pathout"/>
+        app:layout_constraintBottom_toTopOf="@+id/path"/>
+
     <TextView
-        android:id="@+id/pathout"
+        android:id="@+id/path"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -40,8 +41,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name6"
+        app:layout_constraintTop_toBottomOf="@+id/dayNumber"
         app:layout_constraintBottom_toTopOf="@+id/mapFragment" />
+
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -50,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
-        app:layout_constraintTop_toBottomOf="@+id/pathout"/>
+        app:layout_constraintTop_toBottomOf="@+id/path"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"

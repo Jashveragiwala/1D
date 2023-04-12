@@ -18,10 +18,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/createJourney"
         app:srcCompat="@drawable/globe" />
 
     <TextView
-        android:id="@+id/name3"
+        android:id="@+id/createJourney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -32,13 +33,14 @@
         android:textSize="38sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintBottom_toTopOf="@+id/textInputCountry"/>
 
 
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField1"
+        android:id="@+id/textInputCountry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
@@ -52,8 +54,8 @@
         app:boxCornerRadiusTopStart="30dp"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/textField2"
-        app:layout_constraintTop_toBottomOf="@+id/name3"
+        app:layout_constraintBottom_toTopOf="@+id/textInputStartLocation"
+        app:layout_constraintTop_toBottomOf="@+id/createJourney"
 
         >
 
@@ -66,7 +68,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField2"
+        android:id="@+id/textInputStartLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
@@ -80,8 +82,8 @@
         app:boxCornerRadiusTopStart="30dp"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/textField3"
-        app:layout_constraintTop_toBottomOf="@+id/textField1"
+        app:layout_constraintBottom_toTopOf="@+id/textInputNumberOfDays"
+        app:layout_constraintTop_toBottomOf="@+id/textInputCountry"
         tools:layout_editor_absoluteX="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -93,7 +95,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textField3"
+        android:id="@+id/textInputNumberOfDays"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="60dp"
@@ -108,7 +110,7 @@
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintBottom_toTopOf="@+id/done"
-        app:layout_constraintTop_toBottomOf="@+id/textField2"
+        app:layout_constraintTop_toBottomOf="@+id/textInputStartLocation"
         tools:layout_editor_absoluteX="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -123,7 +125,7 @@
         android:id="@+id/done"
         android:layout_width="150sp"
         android:layout_height="60dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="35dp"
         android:backgroundTint="@color/teal_700"
         android:onClick="onAddButtonClicked"
@@ -133,7 +135,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textField2" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputNumberOfDays" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
