@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Trip {
     private ArrayList<ArrayList<String>> Itinerary = null;
-    private String AllLocations;
+    private String allLocations;
 
     private ArrayList<String> cluster;
 
@@ -12,14 +12,14 @@ public class Trip {
 
     private String startLocation;
 
-    Trip(int numberOfDays, String startLocation, String AllLocations){
-        this.AllLocations = AllLocations;
+    Trip(int numberOfDays, String startLocation, String allLocations){
+        this.allLocations = allLocations;
         this.startLocation = startLocation;
         this.numberOfDays = numberOfDays;
     }
 
     public String getAllLocations() {
-        return AllLocations;
+        return allLocations;
     }
 
     public int getNumberOfDays() {
@@ -39,7 +39,7 @@ public class Trip {
     }
 
     public void setCluster() {
-        Clustering c = new Clustering();
+        ClusteringInterface c = new Clustering();
         try {
             cluster = c.getClusters(getNumberOfDays(), getStartLocation(), getAllLocations());
         } catch (Exception e) {
@@ -50,12 +50,12 @@ public class Trip {
     }
 
     public void setItinerary() throws Exception {
-        ArrayList<ArrayList<String>> allpaths = new ArrayList<>();
-        for (String s : getCluster()){
-            DayTrip day = new DayTrip("car",s);
-            allpaths.add(day.shortestpath());
+        ArrayList<ArrayList<String>> allPaths = new ArrayList<>();
+        for (String s : getCluster()) {
+            DayTripInterface day = new DayTrip(s);
+            allPaths.add(day.shortestPath());
         }
-        Itinerary = allpaths;
+        Itinerary = allPaths;
 
     }
 

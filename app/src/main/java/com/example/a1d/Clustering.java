@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Clustering {
+public class Clustering implements ClusteringInterface {
 
     public ArrayList<Double> values = new ArrayList<>();
 
-    public ArrayList<String> getClusters(Integer days, String start, String locationsString) throws Exception {
+    public ArrayList<String> getClusters(Integer days, String start, String locationsString) {
         try {
             DistanceMatrix DMT = new DistanceMatrix();
             HashMap<String, HashMap> locations = DMT.getDistancesClusters(locationsString);
@@ -53,8 +53,9 @@ public class Clustering {
             }
             return clusters;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
+        return null;
     }
 }

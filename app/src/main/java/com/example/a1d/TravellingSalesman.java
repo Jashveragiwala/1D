@@ -2,11 +2,21 @@ package com.example.a1d;
 
 import java.util.*;
 
-public class TravellingSalesman {
+public class TravellingSalesman implements TravellingSalesmanInterface {
 
-    public int[] bestPath; // stores the best path found so far
-    public double bestCost = Double.POSITIVE_INFINITY; // stores the cost of the best path
+    private int[] bestPath;
+    private double bestCost = Double.POSITIVE_INFINITY;
 
+    public int[] getBestPath() {
+        return bestPath;
+    }
+
+    public double getBestCost() {
+        return bestCost;
+    }
+
+
+    @Override
     public int[] solve(double[][] distances, int origin) {
         int n = distances.length;
         int[] path = new int[n];

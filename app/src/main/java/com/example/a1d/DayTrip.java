@@ -3,28 +3,42 @@ package com.example.a1d;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DayTrip {
-    private String transport;
+public class DayTrip implements DayTripInterface {
 
-    private String Locations;
-    private ArrayList<String> finalPath=new ArrayList<>();
+    private String locations;
 
-    DayTrip(String transport, String Locations){
-        this.Locations = Locations;
-        this.transport = transport;
+
+    public String getLocations() {
+        return locations;
     }
 
-    ArrayList<String> shortestpath() throws Exception {
-        System.out.println(Locations);
+    DayTrip(String locations) {
+        this.locations = locations;
+    }
+
+    @Override
+    public ArrayList<String> shortestPath() {
+        System.out.println(getLocations());
+        ArrayList<String> finalPath = new ArrayList<>();
+
         DistanceMatrix DM = new DistanceMatrix();
-        double[][] distanceMatrix = DM.getDistances(Locations);
-        TravellingSalesman ts = new TravellingSalesman();
-        int[] path = ts.solve(distanceMatrix, 0);
-        HashMap<Integer, String> indexes = DM.getIndexes();
-        for (int i : path) {
-            finalPath.add(indexes.get(i));
+        try {
+            double[][] distanceMatrix = DM.getDistances(getLocations());
+
+            // Use Interface instead of Class, if TravellingSalesman Implementation changed later on
+            TravellingSalesmanInterface ts = new TravellingSalesman();
+            int[] path = ts.solve(distanceMatrix, 0);
+
+            HashMap<Integer, String> indexes = DM.getIndexes();
+
+            for (int i : path) {
+                finalPath.add(indexes.get(i));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return finalPath;
+
+    return finalPath;
     }
 }
 
