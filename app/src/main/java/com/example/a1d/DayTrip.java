@@ -3,7 +3,7 @@ package com.example.a1d;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DayTrip implements DayTripInterface {
+public class DayTrip {
 
     private String locations;
 
@@ -16,7 +16,6 @@ public class DayTrip implements DayTripInterface {
         this.locations = locations;
     }
 
-    @Override
     public ArrayList<String> shortestPath() {
         System.out.println(getLocations());
         ArrayList<String> finalPath = new ArrayList<>();

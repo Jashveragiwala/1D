@@ -52,7 +52,7 @@ public class Trip {
     public void setItinerary() throws Exception {
         ArrayList<ArrayList<String>> allPaths = new ArrayList<>();
         for (String s : getCluster()) {
-            DayTripInterface day = new DayTrip(s);
+            DayTrip day = new DayTrip(s);
             allPaths.add(day.shortestPath());
         }
         Itinerary = allPaths;

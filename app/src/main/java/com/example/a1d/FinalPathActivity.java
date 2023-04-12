@@ -23,6 +23,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.maps.DirectionsApi;
+import com.google.maps.DirectionsApiRequest;
+import com.google.maps.GeoApiContext;
+import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.DirectionsRoute;
+import com.google.maps.model.TravelMode;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +39,7 @@ import java.util.List;
 public class FinalPathActivity extends AppCompatActivity {
     TextView textViewDayNumber;
     TextView textViewPath;
+    ArrayList<ArrayList<String>> allPaths;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +59,13 @@ public class FinalPathActivity extends AppCompatActivity {
         textViewDayNumber = findViewById(R.id.dayNumber);
         textViewPath = findViewById(R.id.path);
 
-        ArrayList<ArrayList<String>> allPaths = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("COMPLETE_PATH");
+        allPaths = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("COMPLETE_PATH");
         int index = getIntent().getIntExtra("INDEX", 0);
+
+        if (allPaths == null) {
+            StorePaths s = StorePaths.getInstance();
+            allPaths = s.getPaths();
+        }
 
         Log.d("BING", allPaths.toString());
 
@@ -115,18 +127,52 @@ public class FinalPathActivity extends AppCompatActivity {
                         e.printStackTrace();
                         System.out.println("ERROR No Location Found");
                     }
-                    if (i > 0) {
-                        LatLng previousLocation = locations.get(i - 1);
+                }
+
+                GeoApiContext context = new GeoApiContext.Builder()
+                        .apiKey("AIzaSyD03pQpPpanpGgrJyTfCagPxTLAya8pQws")
+                        .build();
+                // Create a DirectionsApi object and a new request
+                DirectionsApiRequest req = DirectionsApi.newRequest(context);
+
+                // Set the origin and destination of the route
+                LatLng origin = locations.get(0);
+                LatLng destination = locations.get(locations.size() - 1);
+                req.origin(new com.google.maps.model.LatLng(origin.latitude, origin.longitude));
+                req.destination(new com.google.maps.model.LatLng(destination.latitude, destination.longitude));
+
+                // Add any waypoints to the route
+                List<com.google.maps.model.LatLng> waypoints = new ArrayList<>();
+                for (int i = 1; i < locations.size() - 1; i++) {
+                    LatLng waypoint = locations.get(i);
+                    waypoints.add(new com.google.maps.model.LatLng(waypoint.latitude, waypoint.longitude));
+                }
+                req.waypoints(waypoints.toArray(new com.google.maps.model.LatLng[waypoints.size()]));
+
+                // Set the mode of transportation
+                req.mode(TravelMode.DRIVING);
+
+                // Call the await() method to send the request and get the result
+                try {
+                    DirectionsResult result = req.await();
+                    if (result.routes.length > 0) {
+                        DirectionsRoute route = result.routes[0];
+                        List<LatLng> points = new ArrayList<>();
+                        for (com.google.maps.model.LatLng latLng : route.overviewPolyline.decodePath()) {
+                            points.add(new LatLng(latLng.lat, latLng.lng));
+                        }
                         PolylineOptions polylineOptions = new PolylineOptions()
-                                .add(previousLocation)
-                                .add(location)
-                                .width(5)
+                                .addAll(points)
+                                .width(10)
                                 .color(Color.RED);
                         googleMap.addPolyline(polylineOptions);
                     }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
         });
+
         int dayNo = index + 1;
         textViewDayNumber.setText("Day " + dayNo);
         textViewPath.setText(finalOutput);

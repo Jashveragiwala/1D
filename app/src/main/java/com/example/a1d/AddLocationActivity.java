@@ -92,6 +92,8 @@ public class AddLocationActivity extends AppCompatActivity {
                         @Override
                         public void onPathsReady(ArrayList<ArrayList<String>> allPaths) {
                             System.out.println(allPaths);
+                            StorePaths s = StorePaths.getInstance();
+                            s.setPaths(allPaths);
                             Intent intent = new Intent(AddLocationActivity.this, AllDaysActivity.class);
                             intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
                             intent.putExtra("ALL_PATHS", allPaths);

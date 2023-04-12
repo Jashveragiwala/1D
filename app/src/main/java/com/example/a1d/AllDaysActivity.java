@@ -23,6 +23,7 @@ import java.util.ArrayList;
 // AllDaysActivity -> Number of Days (Final Optimized path)
 public class AllDaysActivity extends AppCompatActivity {
 //    TextView txtView;
+    ArrayList<ArrayList<String>> allPaths;
 
 
 
@@ -38,8 +39,13 @@ public class AllDaysActivity extends AppCompatActivity {
 
         String numberOfDays = getIntent().getStringExtra("NUMBER_OF_DAYS");
 
-        ArrayList<ArrayList<String>> allPaths = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("ALL_PATHS");
+        allPaths = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("ALL_PATHS");
         // log the data that we get
+
+        if (allPaths == null) {
+            StorePaths s = StorePaths.getInstance();
+            allPaths = s.getPaths();
+        }
 
 
         int num = Integer.parseInt(numberOfDays);
