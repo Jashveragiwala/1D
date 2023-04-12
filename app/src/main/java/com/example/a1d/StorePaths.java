@@ -16,9 +16,10 @@ public class StorePaths {
     }
 
     public void setPaths(ArrayList<ArrayList<String>> paths) {
-        this.paths = paths;
+        // does not allow modification after setPaths() is called once
+        if (getPaths() == null)
+            this.paths = paths;
     }
-
 
     private StorePaths() {
         paths = null;
