@@ -22,10 +22,7 @@ import java.util.ArrayList;
 
 // AllDaysActivity -> Number of Days (Final Optimized path)
 public class AllDaysActivity extends AppCompatActivity {
-//    TextView txtView;
     ArrayList<ArrayList<String>> allPaths;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +32,14 @@ public class AllDaysActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_all_days);
-//        txtView = (TextView) findViewById(R.id.name5);
 
         String numberOfDays = getIntent().getStringExtra("NUMBER_OF_DAYS");
 
-        allPaths = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("ALL_PATHS");
-        // log the data that we get
-
-        if (allPaths == null) {
-            StorePaths s = StorePaths.getInstance();
-            allPaths = s.getPaths();
-        }
-
+        StorePaths s = StorePaths.getInstance();
+        allPaths = s.getPaths();
 
         int num = Integer.parseInt(numberOfDays);
-        System.out.println(num);
+
         LinearLayout linearLayout = findViewById(R.id.addDay); // get the LinearLayout from the activity's layout// the number of buttons to generate
         if (num == 0){
             TextView textView = new TextView(this); // create a new TextView object
@@ -82,7 +72,6 @@ public class AllDaysActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(AllDaysActivity.this, FinalPathActivity.class);
                         intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
-                        intent.putExtra("COMPLETE_PATH", allPaths);
                         intent.putExtra("INDEX", finalI);
                         startActivity(intent);
                     }
@@ -107,12 +96,8 @@ public class AllDaysActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        ArrayList<ArrayList<String>> allPaths = (ArrayList<ArrayList<String>>) getIntent().getSerializableExtra("ALL_PATHS");
-                        System.out.println("heyeyeyeye");
-                        System.out.println(allPaths);
                         Intent intent_journeys = new Intent((AllDaysActivity.this), AllDaysActivity.class);
                         intent_journeys.putExtra("NUMBER_OF_DAYS", numberOfDays);
-                        intent_journeys.putExtra("COMPLETE_PATH", allPaths);
                         startActivity(intent_journeys);
                         return true;
                     default:

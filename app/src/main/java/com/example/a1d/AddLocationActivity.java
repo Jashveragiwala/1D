@@ -70,9 +70,6 @@ public class AddLocationActivity extends AppCompatActivity {
         ErrorView.setVisibility(View.GONE);
         buttonDoneAdding = findViewById(R.id.doneAdding);
 
-        String TAG = "mainActivity4";
-        Log.i(TAG, "onCreate: I am inside activity4");
-
         numberOfDays = getIntent().getStringExtra("NUMBER_OF_DAYS");
         startLocation = getIntent().getStringExtra("START_LOCATION");
         country = getIntent().getStringExtra("COUNTRY");
@@ -91,12 +88,11 @@ public class AddLocationActivity extends AppCompatActivity {
                     getPath(noOfDays, startLocation, locationsString, new PathCallback() {
                         @Override
                         public void onPathsReady(ArrayList<ArrayList<String>> allPaths) {
-                            System.out.println(allPaths);
                             StorePaths s = StorePaths.getInstance();
                             s.setPaths(allPaths);
+
                             Intent intent = new Intent(AddLocationActivity.this, AllDaysActivity.class);
                             intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
-                            intent.putExtra("ALL_PATHS", allPaths);
                             startActivity(intent);
                         }
                     });
@@ -264,7 +260,7 @@ public class AddLocationActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        Intent intent_journeys = new Intent((AddLocationActivity.this), AllDaysActivity.class);
+                        Intent intent_journeys = new Intent(AddLocationActivity.this, AllDaysActivity.class);
                         intent_journeys.putExtra("NUMBER_OF_DAYS", numberOfDays);
                         startActivity(intent_journeys);
                         return true;
@@ -284,10 +280,6 @@ public class AddLocationActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                // int numberOfDays = 2;
-                // String startLocation = "SUTD";
-                // String locationsString = "HomeTeamNS Bukit Batok%7C%SUTD%7C%NUS%7C%NTU%7C%Singapore Management University%7C%Singapore Institute of Technology%7C%Simei MRT%7C%51 Changi Village Rd%7C%Toppers Education Centre%7C%Waterway Point%7C%";
-
                 String locationsStringNew = startLocation + "%7C%" + locationsString;
 
                 ArrayList<ArrayList<String>> allPaths = null;
@@ -305,12 +297,7 @@ public class AddLocationActivity extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println(finalAllPaths);
                         callback.onPathsReady(finalAllPaths);
-                        //Intent intent = new Intent(MainActivity4.this, MainActivity5.class);
-                        //intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
-                        //intent.putExtra("ALL_PATHS", allPaths);
-                        //startActivity(intent);
                     }
                 });
 

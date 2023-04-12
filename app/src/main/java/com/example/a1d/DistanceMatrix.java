@@ -47,7 +47,7 @@ public class DistanceMatrix {
                 .url("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" +
                         origins + "&destinations=" + destinations + "&mode=driving&language=en-EN&" +
                         "key=AIzaSyD03pQpPpanpGgrJyTfCagPxTLAya8pQws")
-                .method("GET", null) // body)
+                .method("GET", null)
                 .build();
 
         Response response = client.newCall(request).execute();
@@ -102,9 +102,6 @@ public class DistanceMatrix {
         String origins = locationString;
 
         origins = origins.substring(0, origins.length()-4);
-
-        //String origins = "HomeTeamNS Bukit Batok%7C%SUTD%7C%NUS%7C%NTU%7C%Singapore Management University%7C%Singapore Institute of Technology%7C%Simei MRT%7C%51 Changi Village Rd%7C%Toppers Education Centre%7C%Waterway Point"; //%7C%NTU
-
         String destinations = origins;
 
         String originArr[] = origins.split("%7C%");
@@ -121,7 +118,7 @@ public class DistanceMatrix {
                 .url("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" +
                         origins + "&destinations=" + destinations + "&mode=driving&language=en-EN&" +
                         "key=AIzaSyD03pQpPpanpGgrJyTfCagPxTLAya8pQws")
-                .method("GET", null) // body)
+                .method("GET", null)
                 .build();
 
         Response response = client.newCall(request).execute();

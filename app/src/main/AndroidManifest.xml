@@ -40,12 +40,6 @@
             android:name=".CreateJourneyActivity"
             android:exported="false" />
         <activity
-            android:name=".All_JourneysActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Add_locations_activity"
-            android:exported="false" />
-        <activity
             android:name=".HomePageActivity"
             android:exported="true">
             <intent-filter>

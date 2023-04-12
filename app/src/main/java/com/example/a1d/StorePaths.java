@@ -11,19 +11,16 @@ public class StorePaths {
         return instance;
     }
 
-    public void setPaths(ArrayList<ArrayList<String>> paths) {
-        this.paths = paths;
-    }
-
     public ArrayList<ArrayList<String>> getPaths() {
         return paths;
     }
 
-    private StorePaths() {
-        paths = null;
+    public void setPaths(ArrayList<ArrayList<String>> paths) {
+        this.paths = paths;
     }
 
-    private StorePaths(ArrayList<ArrayList<String>> paths) {
-        this.paths = paths;
+
+    private StorePaths() {
+        paths = null;
     }
 }

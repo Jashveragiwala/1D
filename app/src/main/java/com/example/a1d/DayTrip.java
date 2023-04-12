@@ -17,7 +17,6 @@ public class DayTrip {
     }
 
     public ArrayList<String> shortestPath() {
-        System.out.println(getLocations());
         ArrayList<String> finalPath = new ArrayList<>();
 
         DistanceMatrix DM = new DistanceMatrix();
