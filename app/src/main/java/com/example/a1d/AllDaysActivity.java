@@ -42,11 +42,12 @@ public class AllDaysActivity extends AppCompatActivity {
 
         LinearLayout linearLayout = findViewById(R.id.addDay); // get the LinearLayout from the activity's layout// the number of buttons to generate
         if (num == 0){
-            TextView textView = new TextView(this); // create a new TextView object
-            textView.setText("Number of days not added to Your Journey"); // set the text of the TextView
-            textView.setGravity(Gravity.CENTER);
-            textView.setTextColor(Color.RED);
-            linearLayout.addView(textView); // add the TextView to the LinearLayout
+            TextView textViewNoJourney = new TextView(this); // create a new TextView object
+            textViewNoJourney.setText("Create a Journey first"); // set the text of the TextView
+            textViewNoJourney.setTextSize(20);
+            textViewNoJourney.setGravity(Gravity.CENTER);
+            textViewNoJourney.setTextColor(Color.RED);
+            linearLayout.addView(textViewNoJourney); // add the TextView to the LinearLayout
         }
         else {
             for (int i = 0; i < num; i++) {
