@@ -45,8 +45,8 @@ import java.util.concurrent.Executors;
 
 // AddLocationActivity -> Add Locations
 public class AddLocationActivity extends AppCompatActivity {
-    Button ButtonA;
-    MaterialButton AddLoc;
+    Button buttonDoneAdding;
+    MaterialButton AddLocation;
 
     String numberOfDays = "";
     String startLocation = "";
@@ -54,8 +54,9 @@ public class AddLocationActivity extends AppCompatActivity {
     ArrayList<String> locations = new ArrayList<>();
     String Location;
     TextView ErrorView;
-    Marker selectedmarker = null;
-    int numberoflocations = 0;
+    Marker selectedMarker = null;
+    int numberOfLocations = 0;
+    String country;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,18 +68,19 @@ public class AddLocationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_location);
         ErrorView = findViewById(R.id.error);
         ErrorView.setVisibility(View.GONE);
-        ButtonA = (Button) findViewById(R.id.doneadding);
+        buttonDoneAdding = findViewById(R.id.doneAdding);
 
         String TAG = "mainActivity4";
         Log.i(TAG, "onCreate: I am inside activity4");
 
         numberOfDays = getIntent().getStringExtra("NUMBER_OF_DAYS");
         startLocation = getIntent().getStringExtra("START_LOCATION");
+        country = getIntent().getStringExtra("COUNTRY");
 
-        ButtonA.setOnClickListener(new View.OnClickListener() {
+        buttonDoneAdding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (numberoflocations >= Integer.parseInt(numberOfDays)){
+                if (numberOfLocations >= Integer.parseInt(numberOfDays)){
                     ErrorView.setVisibility(View.GONE);
                     for (String s : locations) {
                         locationsString += s + "%7C%";
@@ -106,8 +108,8 @@ public class AddLocationActivity extends AppCompatActivity {
             }
         });
 
-        MaterialButton AddLoc = findViewById(R.id.moreinput);
-        AddLoc.setOnClickListener(new View.OnClickListener() {
+        AddLocation = findViewById(R.id.AddLocation);
+        AddLocation.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -151,13 +153,13 @@ public class AddLocationActivity extends AppCompatActivity {
                         if (event.getAction() == MotionEvent.ACTION_UP) {
                             if (event.getX() >= iconLeft && event.getX() <= iconRight) {
                                 // Remove the EditText view from its parent layout
-                                if (selectedmarker!=null){
+                                if (selectedMarker!=null){
                                     locations.remove(editText.getText().toString());
                                     ((ViewGroup)editText.getParent()).removeView(editText);
-                                    selectedmarker.remove();
-                                    selectedmarker = null;
+                                    selectedMarker.remove();
+                                    selectedMarker = null;
                                     Toast.makeText(AddLocationActivity.this,"Location field deleted", Toast.LENGTH_LONG).show();
-                                    numberoflocations--;
+                                    numberOfLocations--;
                                 }
                                 if (editText.getText().toString().equals("")){
                                     ((ViewGroup)editText.getParent()).removeView(editText);
@@ -185,33 +187,44 @@ public class AddLocationActivity extends AppCompatActivity {
                                                 ErrorView.setText("No such Location Found");
                                             }
                                             if (addresses.size() > 0) {
-                                                Address address = addresses.get(0);
-                                                LatLng location = new LatLng(address.getLatitude(), address.getLongitude());
+                                                List<Address> particularlocations = geocoder.getFromLocationName(Location, 1);
+                                                Address address = particularlocations.get(0);
+                                                List<Address> countryAddresses = geocoder.getFromLocationName(country, 1);
+                                                Address countryAddress = countryAddresses.get(0);
+                                                if (countryAddress.getCountryName().equalsIgnoreCase(address.getCountryName())) {
+                                                    ErrorView.setVisibility(View.GONE);
+                                                    LatLng location = new LatLng(address.getLatitude(), address.getLongitude());
 
 
-                                                // Move the camera to the desired location and zoom level
-                                                float zoomLevel = 12f;
-                                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel));
+                                                    // Move the camera to the desired location and zoom level
+                                                    float zoomLevel = 12f;
+                                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel));
 
-                                                // Add a marker at the desired location
-                                                MarkerOptions markerOptions = new MarkerOptions()
-                                                        .position(location)
-                                                        .title(address.getLocality())
-                                                        .snippet(address.getAdminArea());
-                                                googleMap.addMarker(markerOptions);
-                                                locations.add(Location);
-                                                Toast.makeText(AddLocationActivity.this,"Location added on map", Toast.LENGTH_LONG).show();
-                                                numberoflocations++;
-                                                ErrorView.setVisibility(View.GONE);
+                                                    // Add a marker at the desired location
+                                                    MarkerOptions markerOptions = new MarkerOptions()
+                                                            .position(location)
+                                                            .title(address.getLocality())
+                                                            .snippet(address.getAdminArea());
+                                                    googleMap.addMarker(markerOptions);
+                                                    locations.add(Location);
+                                                    Toast.makeText(AddLocationActivity.this,"Location added on map", Toast.LENGTH_LONG).show();
+                                                    numberOfLocations++;
+                                                    ErrorView.setVisibility(View.GONE);
 
-                                                googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                                                    @Override
-                                                    public boolean onMarkerClick(@NonNull Marker marker) {
+                                                    googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                                        @Override
+                                                        public boolean onMarkerClick(@NonNull Marker marker) {
 
-                                                        selectedmarker = marker;
-                                                        return  true;
-                                                    }
-                                                });
+                                                            selectedMarker = marker;
+                                                            return  true;
+                                                        }
+                                                    });
+                                                }
+                                                else{
+                                                    ErrorView.setVisibility(View.VISIBLE);
+                                                    ErrorView.setText("The starting location must be in the same country as the entered country.");
+                                                }
+
                                             }
                                         } catch (IOException e) {
                                             e.printStackTrace();

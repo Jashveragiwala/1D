@@ -19,8 +19,8 @@ import com.google.android.material.navigation.NavigationBarView;
 // Home Page
 public class HomePageActivity extends AppCompatActivity{
 
-    Button ButtonGetStarted;
-    TextView txtView;
+    Button buttonGetStarted;
+    TextView textViewTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,16 +29,15 @@ public class HomePageActivity extends AppCompatActivity{
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_home_page);
-        txtView = (TextView) findViewById(R.id.name);
-        ButtonGetStarted = (Button) findViewById(R.id.button_get_started);
-
+        textViewTitle = findViewById(R.id.title);
+        buttonGetStarted = findViewById(R.id.button_get_started);
         String numberOfDays = "0";
 
-        ButtonGetStarted.setOnClickListener(new View.OnClickListener(){
+        buttonGetStarted.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 String TAG = "HomePage";
-                Log.d(TAG, "onClick: get started is clicked"); // logcat logs that button is clicked
+                Log.d(TAG, "onClick: get started is clicked");
                 Intent intent = new Intent(HomePageActivity.this, CreateJourneyActivity.class);
                 startActivity(intent);
             }}
@@ -53,14 +52,12 @@ public class HomePageActivity extends AppCompatActivity{
                 switch(id){
                     case R.id.nav_home:
                         // Handle click on "Home" button
-                        Intent intent = new Intent(HomePageActivity.this,
-                                HomePageActivity.class);
+                        Intent intent = new Intent(HomePageActivity.this, HomePageActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        Intent intent_journeys = new Intent((HomePageActivity.this),
-                                AllDaysActivity.class);
+                        Intent intent_journeys = new Intent(HomePageActivity.this, AllDaysActivity.class);
                         intent_journeys.putExtra("NUMBER_OF_DAYS", numberOfDays);
                         startActivity(intent_journeys);
                         return true;

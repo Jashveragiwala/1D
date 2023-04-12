@@ -22,9 +22,7 @@ import java.util.ArrayList;
 
 // AllDaysActivity -> Number of Days (Final Optimized path)
 public class AllDaysActivity extends AppCompatActivity {
-    Button ButtonA;
-    Button ButtonB;
-    TextView txtView;
+//    TextView txtView;
 
 
 
@@ -36,7 +34,7 @@ public class AllDaysActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_all_days);
-        txtView = (TextView) findViewById(R.id.name5);
+//        txtView = (TextView) findViewById(R.id.name5);
 
         String numberOfDays = getIntent().getStringExtra("NUMBER_OF_DAYS");
 
@@ -46,7 +44,7 @@ public class AllDaysActivity extends AppCompatActivity {
 
         int num = Integer.parseInt(numberOfDays);
         System.out.println(num);
-        LinearLayout linearLayout = findViewById(R.id.dayadd); // get the LinearLayout from the activity's layout// the number of buttons to generate
+        LinearLayout linearLayout = findViewById(R.id.addDay); // get the LinearLayout from the activity's layout// the number of buttons to generate
         if (num == 0){
             TextView textView = new TextView(this); // create a new TextView object
             textView.setText("Number of days not added to Your Journey"); // set the text of the TextView
@@ -56,7 +54,7 @@ public class AllDaysActivity extends AppCompatActivity {
         }
         else {
             for (int i = 0; i < num; i++) {
-                Button button = new Button(this); // create a new button
+                Button buttonDayI = new Button(this); // create a new button
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                         LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT
@@ -65,30 +63,17 @@ public class AllDaysActivity extends AppCompatActivity {
                 params.height = 180; // set the height of the button
                 params.setMargins(0, 40, 0, 0);
                 params.gravity = Gravity.CENTER_HORIZONTAL;
-                button.setLayoutParams(params); // apply the layout params to the button
-                button.setTextColor(Color.BLUE); // set the text color of the button
-                button.setTextSize(22); // set the text size of the button
-                button.setText("Day " + (i + 1)); // set the button's text
-                linearLayout.addView(button); // add the button to the LinearLayout
-                button.setBackgroundColor(Color.RED); // set the background color of the button
-                button.setBackgroundResource(R.drawable.button); // set a drawable resource as the background of the button
+                buttonDayI.setLayoutParams(params); // apply the layout params to the button
+                buttonDayI.setTextColor(Color.BLUE); // set the text color of the button
+                buttonDayI.setTextSize(22); // set the text size of the button
+                buttonDayI.setText("Day " + (i + 1)); // set the button's text
+                linearLayout.addView(buttonDayI); // add the button to the LinearLayout
+                buttonDayI.setBackgroundColor(Color.RED); // set the background color of the button
+                buttonDayI.setBackgroundResource(R.drawable.button); // set a drawable resource as the background of the button
                 int finalI = i;
-                button.setOnClickListener(new View.OnClickListener() {
+                buttonDayI.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-
-                        // handle button click
-                        // System.out.println("okok");
-                        // System.out.println(finalI);
-
-                        // ArrayList<String> cluster = allPaths.get(finalI);
-
-                        // System.out.println(allPaths);
-                        // System.out.println("reobfiusvgoireusvd");
-
-                        // ArrayList<ArrayList<String>> allPathsNew = allPaths;
-
                         Intent intent = new Intent(AllDaysActivity.this, FinalPathActivity.class);
                         intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
                         intent.putExtra("COMPLETE_PATH", allPaths);

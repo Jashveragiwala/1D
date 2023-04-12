@@ -12,7 +12,7 @@
 
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -33,7 +33,7 @@
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/title"
         app:srcCompat="@drawable/mainlogo" />
 
     <com.google.android.material.button.MaterialButton
@@ -67,7 +67,7 @@
         app:itemIconTint="#092048"
         app:itemTextColor="#092048"
         app:itemBackground="@android:color/transparent"/>
-<!--    android:background="@color/teal_700"-->
+
 
 
 

@@ -21,12 +21,18 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 // CreateJourneyActivity -> CreateJourney
 
 public class CreateJourneyActivity extends AppCompatActivity {
-    Button ButtonA;
+    Button buttonDone;
+    TextInputLayout textInputCountry;
+    TextInputLayout textInputStartLocation;
+    TextInputLayout textInputNumberOfDays;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,75 +41,97 @@ public class CreateJourneyActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_create_journey);
-        ButtonA = (Button) findViewById(R.id.done);
+        buttonDone = (Button) findViewById(R.id.done);
 
         int resultCode = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
 
         if (resultCode == ConnectionResult.SUCCESS) {
-            Log.v("BING", "Connection worked");
-            // Google Play services is installed on the device and is up-to-date
+            Log.v("BING", "Connection worked"); // Google Play services is installed on the device and is up-to-date
         } else {
-            // Google Play services is not available or not up-to-date, prompt the user to update it
-            Log.d("BING", "Google Play services is not available");
+            Log.d("BING", "Google Play services is not available"); // Google Play services is not available or not up-to-date, prompt the user to update it
             GoogleApiAvailability.getInstance().getErrorDialog(this, resultCode, 0).show();
         }
 
-        ButtonA.setOnClickListener(new View.OnClickListener(){
+        buttonDone.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                TextInputLayout textField3 = findViewById(R.id.textField3);
-                String numberOfDays = textField3.getEditText().getText().toString();
 
-                TextInputLayout textField2 = findViewById(R.id.textField2);
-                String startLocation = textField2.getEditText().getText().toString();
+                textInputCountry = findViewById(R.id.textInputCountry);
+                String country = textInputCountry.getEditText().getText().toString().toLowerCase().trim();
 
-                TextInputLayout textField1 = findViewById(R.id.textField1);
-                String country = textField1.getEditText().getText().toString();
+                textInputStartLocation = findViewById(R.id.textInputStartLocation);
+                String startLocation = textInputStartLocation.getEditText().getText().toString();
+
+                textInputNumberOfDays = findViewById(R.id.textInputNumberOfDays);
+                String numberOfDays = textInputNumberOfDays.getEditText().getText().toString();
+
+                ArrayList<String> countryList = new ArrayList<>();
+                String[] isoCountries = Locale.getISOCountries();
+                for (String countryCode : isoCountries) {
+                    Locale locale = new Locale("", countryCode);
+                    String countryName = locale.getDisplayCountry().toLowerCase();
+                    countryList.add(countryName);
+                }
 
                 if (numberOfDays.isEmpty() || country.isEmpty() || startLocation.isEmpty()) {
                     if (numberOfDays.isEmpty()) {
-                        textField3.setError("Field is required");
+                        textInputNumberOfDays.setError("Field is required");
                     }
                     if (country.isEmpty()) {
-                        textField1.setError("Field is required");
+                        textInputCountry.setError("Field is required");
                     }
                     if (startLocation.isEmpty()) {
-                        textField2.setError("Field is required");
+                        textInputStartLocation.setError("Field is required");
                     }
                 } else {
                     Geocoder geocoder = new Geocoder(CreateJourneyActivity.this);
                     try {
-                        List<Address> addresses = geocoder.getFromLocationName(startLocation, 1);
-                        if (addresses.size() > 0) {
-                            Address address = addresses.get(0);
-                            if (address.hasLatitude() && address.hasLongitude()) {
-                                textField2.setError(null); // clear any previous error message
-                                try {
-                                    int numDays = Integer.parseInt(numberOfDays); // try to parse the string as an integer
-                                    textField3.setError(null); // clear any previous error message
-                                    Intent intent2 = new Intent(CreateJourneyActivity.this, AddLocationActivity.class);
-                                    intent2.putExtra("NUMBER_OF_DAYS", numberOfDays);
-                                    intent2.putExtra("START_LOCATION", startLocation);
-                                    startActivity(intent2);
-                                } catch (NumberFormatException e) { // if the string cannot be parsed as an integer
-                                    textField3.setError("Please enter a valid number"); // display an error message
+                        List<Address> startAddresses = geocoder.getFromLocationName(startLocation, 1);
+                        if (startAddresses.size() > 0) {
+                            textInputStartLocation.setError(null);
+                            Address startAddress = startAddresses.get(0);
+                            if (startAddress.hasLatitude() && startAddress.hasLongitude()) {
+                                textInputStartLocation.setError(null); // clear any previous error message
+                                if (countryList.contains(country)) {
+                                    textInputCountry.setError(null);
+                                    List<Address> countryAddresses = geocoder.getFromLocationName(country, 1);
+                                    if (countryAddresses.size() > 0) {
+                                        textInputCountry.setError(null);
+                                        Address countryAddress = countryAddresses.get(0);
+                                        if (countryAddress.getCountryName().equalsIgnoreCase(startAddress.getCountryName())) {
+                                            textInputStartLocation.setError(null);
+                                            try {
+                                                int numDays = Integer.parseInt(numberOfDays); // try to parse the string as an integer
+                                                textInputNumberOfDays.setError(null); // clear any previous error message
+                                                Intent intent2 = new Intent(CreateJourneyActivity.this, AddLocationActivity.class);
+                                                intent2.putExtra("NUMBER_OF_DAYS", numberOfDays);
+                                                intent2.putExtra("START_LOCATION", startLocation);
+                                                intent2.putExtra("COUNTRY",country);
+                                                startActivity(intent2);
+                                            } catch (NumberFormatException e) { // if the string cannot be parsed as an integer
+                                                textInputNumberOfDays.setError("Please enter a valid number"); // display an error message
+                                            }
+                                        } else {
+                                            textInputStartLocation.setError("The starting location must be in the same country as the entered country.");
+                                        }
+                                    } else {
+                                        textInputCountry.setError("Please enter a valid country");
+                                    }
+                                } else{
+                                    textInputCountry.setError("Please enter a valid country");
                                 }
                             } else {
-                                textField2.setError("Please enter a valid location"); // display an error message
+                                textInputStartLocation.setError("Please enter a valid location"); // display an error message
                             }
                         } else {
-                            textField2.setError("Please enter a valid location"); // display an error message
+                            textInputStartLocation.setError("Please enter a valid location"); // display an error message
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
-
-
-
-            }}
-        );
-
+            }
+        });
 
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
