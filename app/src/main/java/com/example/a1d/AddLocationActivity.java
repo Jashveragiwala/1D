@@ -220,7 +220,7 @@ public class AddLocationActivity extends AppCompatActivity {
                                                 }
                                                 else{
                                                     ErrorView.setVisibility(View.VISIBLE);
-                                                    ErrorView.setText("The starting location must be in the same country as the entered country.");
+                                                    ErrorView.setText("The location must exist in the country.");
                                                 }
 
                                             }
