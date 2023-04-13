@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -77,15 +78,27 @@ public class CreateJourneyActivity extends AppCompatActivity {
                     if (numberOfDays.isEmpty()) {
                         textInputNumberOfDays.setError("Field is required");
                     }
+                    else{
+                        textInputNumberOfDays.setError(null);
+                    }
                     if (country.isEmpty()) {
                         textInputCountry.setError("Field is required");
+                    }
+                    else {
+                        textInputCountry.setError(null);
                     }
                     if (startLocation.isEmpty()) {
                         textInputStartLocation.setError("Field is required");
                     }
+                    else{
+                        textInputStartLocation.setError(null);
+                    }
                 } else {
                     Geocoder geocoder = new Geocoder(CreateJourneyActivity.this);
                     try {
+                        if (!numberOfDays.isEmpty()) {
+                            textInputNumberOfDays.setError(null);
+                        }
                         List<Address> startAddresses = geocoder.getFromLocationName(startLocation, 1);
                         if (startAddresses.size() > 0) {
                             textInputStartLocation.setError(null);
