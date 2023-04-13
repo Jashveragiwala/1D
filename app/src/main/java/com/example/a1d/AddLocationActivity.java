@@ -260,9 +260,7 @@ public class AddLocationActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
-                        Intent intent_journeys = new Intent(AddLocationActivity.this, AllDaysActivity.class);
-                        intent_journeys.putExtra("NUMBER_OF_DAYS", numberOfDays);
-                        startActivity(intent_journeys);
+                        Toast.makeText(AddLocationActivity.this,"Click Done Adding to Proceed", Toast.LENGTH_LONG).show();
                         return true;
                     default:
                         return false;
