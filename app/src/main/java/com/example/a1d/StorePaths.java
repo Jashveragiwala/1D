@@ -8,6 +8,10 @@ public class StorePaths {
     private static StorePaths instance = new StorePaths();
 
     public static StorePaths getInstance() {
+
+        if (instance == null){
+            instance = new StorePaths();
+        }
         return instance;
     }
 
@@ -17,8 +21,7 @@ public class StorePaths {
 
     public void setPaths(ArrayList<ArrayList<String>> paths) {
         // does not allow modification after setPaths() is called once
-        if (getPaths() == null)
-            this.paths = paths;
+        this.paths = paths;
     }
 
     private StorePaths() {
