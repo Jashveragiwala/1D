@@ -47,7 +47,6 @@ import java.util.concurrent.Executors;
 public class AddLocationActivity extends AppCompatActivity {
     Button buttonDoneAdding;
     MaterialButton AddLocation;
-
     String numberOfDays = "";
     String startLocation = "";
     String locationsString = "";
@@ -61,10 +60,11 @@ public class AddLocationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        requetsWindowFeature(Window.FEATURE_NO_TITLE);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // restricts the user from rotating the screen from portrait to landscape
+        requetsWindowFeature(Window.FEATURE_NO_TITLE); // removes the title
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
+
         setContentView(R.layout.activity_add_location);
         ErrorView = findViewById(R.id.error);
         ErrorView.setVisibility(View.GONE);

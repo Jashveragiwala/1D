@@ -34,16 +34,30 @@ public class CreateJourneyActivity extends AppCompatActivity {
     TextInputLayout textInputStartLocation;
     TextInputLayout textInputNumberOfDays;
 
+    //This method is called when the activity is first created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Sets the orientation of the screen to portrait mode
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        //Removes the title bar of the app
         requetsWindowFeature(Window.FEATURE_NO_TITLE);
+
+        //Sets the app to run in full screen mode
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        //Hides the action bar of the app
         getSupportActionBar().hide();
+
+        //Sets the content view of the activity to activity_create_journey.xml
         setContentView(R.layout.activity_create_journey);
+
+        //Assigns the Button view with id "done" to the buttonDone variable
         buttonDone = (Button) findViewById(R.id.done);
 
+        //Checks if Google Play Services is available on the device and logs the result
         int resultCode = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
 
         if (resultCode == ConnectionResult.SUCCESS) {
@@ -53,19 +67,24 @@ public class CreateJourneyActivity extends AppCompatActivity {
             GoogleApiAvailability.getInstance().getErrorDialog(this, resultCode, 0).show();
         }
 
+        //Sets an onClickListener for the buttonDone button
         buttonDone.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
 
+                //Gets the text input from the TextInputLayout with id "textInputCountry"
                 textInputCountry = findViewById(R.id.textInputCountry);
                 String country = textInputCountry.getEditText().getText().toString().toLowerCase().trim();
 
+                //Gets the text input from the TextInputLayout with id "textInputStartLocation"
                 textInputStartLocation = findViewById(R.id.textInputStartLocation);
                 String startLocation = textInputStartLocation.getEditText().getText().toString();
 
+                //Gets the text input from the TextInputLayout with id "textInputNumberOfDays"
                 textInputNumberOfDays = findViewById(R.id.textInputNumberOfDays);
                 String numberOfDays = textInputNumberOfDays.getEditText().getText().toString();
 
+                //Creates a list of country names from ISO country codes using the Locale class
                 ArrayList<String> countryList = new ArrayList<>();
                 String[] isoCountries = Locale.getISOCountries();
                 for (String countryCode : isoCountries) {
@@ -74,6 +93,7 @@ public class CreateJourneyActivity extends AppCompatActivity {
                     countryList.add(countryName);
                 }
 
+                //Checks if any of the text input fields are empty and displays an error message if they are
                 if (numberOfDays.isEmpty() || country.isEmpty() || startLocation.isEmpty()) {
                     if (numberOfDays.isEmpty()) {
                         textInputNumberOfDays.setError("Field is required");
@@ -94,35 +114,44 @@ public class CreateJourneyActivity extends AppCompatActivity {
                         textInputStartLocation.setError(null);
                     }
                 } else {
+                    // if all required fields are filled, proceed with geocoding and validation
                     Geocoder geocoder = new Geocoder(CreateJourneyActivity.this);
                     try {
+                        // clear any previous error message
                         if (!numberOfDays.isEmpty()) {
                             textInputNumberOfDays.setError(null);
                         }
+                        // get the starting location address from the entered string
                         List<Address> startAddresses = geocoder.getFromLocationName(startLocation, 1);
                         if (startAddresses.size() > 0) {
                             textInputStartLocation.setError(null);
                             Address startAddress = startAddresses.get(0);
                             if (startAddress.hasLatitude() && startAddress.hasLongitude()) {
-                                textInputStartLocation.setError(null); // clear any previous error message
+                                // clear any previous error message
+                                textInputStartLocation.setError(null);
+
+                                // check if the entered country is valid and get its address
                                 if (countryList.contains(country)) {
                                     textInputCountry.setError(null);
                                     List<Address> countryAddresses = geocoder.getFromLocationName(country, 1);
                                     if (countryAddresses.size() > 0) {
                                         textInputCountry.setError(null);
                                         Address countryAddress = countryAddresses.get(0);
+                                        // check if the starting location and entered country are in the same country
                                         if (countryAddress.getCountryName().equalsIgnoreCase(startAddress.getCountryName())) {
                                             textInputStartLocation.setError(null);
                                             try {
-                                                int numDays = Integer.parseInt(numberOfDays); // try to parse the string as an integer
+                                                // parse the entered number of days as an integer and pass it to the next activity
+                                                int numDays = Integer.parseInt(numberOfDays);
                                                 textInputNumberOfDays.setError(null); // clear any previous error message
                                                 Intent intent2 = new Intent(CreateJourneyActivity.this, AddLocationActivity.class);
                                                 intent2.putExtra("NUMBER_OF_DAYS", numberOfDays);
                                                 intent2.putExtra("START_LOCATION", startLocation);
                                                 intent2.putExtra("COUNTRY",country);
                                                 startActivity(intent2);
-                                            } catch (NumberFormatException e) { // if the string cannot be parsed as an integer
-                                                textInputNumberOfDays.setError("Please enter a valid number"); // display an error message
+                                            } catch (NumberFormatException e) {
+                                                // if the entered number of days cannot be parsed as an integer, display an error message
+                                                textInputNumberOfDays.setError("Please enter a valid number");
                                             }
                                         } else {
                                             textInputStartLocation.setError("The starting location must be in the same country as the entered country.");
@@ -134,10 +163,12 @@ public class CreateJourneyActivity extends AppCompatActivity {
                                     textInputCountry.setError("Please enter a valid country");
                                 }
                             } else {
-                                textInputStartLocation.setError("Please enter a valid location"); // display an error message
+                                // if the starting location cannot be geocoded, display an error message
+                                textInputStartLocation.setError("Please enter a valid location");
                             }
                         } else {
-                            textInputStartLocation.setError("Please enter a valid location"); // display an error message
+                            // if the starting location cannot be geocoded, display an error message
+                            textInputStartLocation.setError("Please enter a valid location");
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -146,6 +177,7 @@ public class CreateJourneyActivity extends AppCompatActivity {
             }
         });
 
+        // set a listener for the bottom navigation bar
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -153,12 +185,12 @@ public class CreateJourneyActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 switch(id){
                     case R.id.nav_home:
-                        // Handle click on "Home" button
+                        // If "Home" button is clicked, start HomePageActivity
                         Intent intent = new Intent(CreateJourneyActivity.this, HomePageActivity.class);
                         startActivity(intent);
                         return true;
                     case R.id.nav_journeys:
-                        // Handle click on "Journeys" button
+                        // If "Journeys" button is clicked, start AllDaysActivity and pass number of days as extra
                         String numberOfDays = "0";
                         Intent intent_journeys = new Intent((CreateJourneyActivity.this), AllDaysActivity.class);
                         intent_journeys.putExtra("NUMBER_OF_DAYS", numberOfDays);
@@ -168,7 +200,6 @@ public class CreateJourneyActivity extends AppCompatActivity {
                         return false;}
             }
         });
-
     }
 
     private void requetsWindowFeature(int featureNoTitle) {
