@@ -60,37 +60,58 @@ public class AddLocationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); // restricts the user from rotating the screen from portrait to landscape
-        requetsWindowFeature(Window.FEATURE_NO_TITLE); // removes the title
+
+        // Set the orientation of the activity to portrait only
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        // Remove the title from the activity
+        requetsWindowFeature(Window.FEATURE_NO_TITLE);
+
+        // Set the activity to full screen
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        // Hide the action bar
         getSupportActionBar().hide();
 
+        // Set the layout for the activity
         setContentView(R.layout.activity_add_location);
+
+        // Find the error view and set it to be initially invisible
         ErrorView = findViewById(R.id.error);
         ErrorView.setVisibility(View.GONE);
+
+        // Find the "Done Adding" button
         buttonDoneAdding = findViewById(R.id.doneAdding);
 
+        // Get the number of days, start location, and country from the previous activity
         numberOfDays = getIntent().getStringExtra("NUMBER_OF_DAYS");
         startLocation = getIntent().getStringExtra("START_LOCATION");
         country = getIntent().getStringExtra("COUNTRY");
 
+        // Set a listener for the "Done Adding" butto
         buttonDoneAdding.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Check if there are enough locations added
                 if (numberOfLocations >= Integer.parseInt(numberOfDays)){
+
+                    // If there are enough locations, create a string containing all of the locations
                     ErrorView.setVisibility(View.GONE);
                     for (String s : locations) {
                         locationsString += s + "%7C%";
                     }
 
+                    // Call the getPath function to get all of the possible paths
                     int noOfDays = Integer.parseInt(numberOfDays);
 
                     getPath(noOfDays, startLocation, locationsString, new PathCallback() {
                         @Override
                         public void onPathsReady(ArrayList<ArrayList<String>> allPaths) {
+                            // Store the paths in a singleton class
                             StorePaths s = StorePaths.getInstance();
                             s.setPaths(allPaths);
 
+                            // Start the AllDaysActivity to display the paths
                             Intent intent = new Intent(AddLocationActivity.this, AllDaysActivity.class);
                             intent.putExtra("NUMBER_OF_DAYS", numberOfDays);
                             startActivity(intent);
@@ -98,6 +119,7 @@ public class AddLocationActivity extends AppCompatActivity {
                     });
                 }
 
+                // If there are not enough locations, display an error message
                 else {
                     ErrorView.setVisibility(View.VISIBLE);
                     ErrorView.setText("Enter More Locations");
@@ -106,17 +128,25 @@ public class AddLocationActivity extends AppCompatActivity {
             }
         });
 
+        // Find the "Add Location" button
         AddLocation = findViewById(R.id.AddLocation);
+
+        // Set a listener for the "Add Location" button
         AddLocation.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
+
+                // Create a new EditText view to enter a location
                 EditText editText = new EditText(AddLocationActivity.this);
                 editText.setId(View.generateViewId());
 
+                // Set the layout parameters for the EditText view
                 LinearLayoutCompat.LayoutParams layoutParams = new LinearLayoutCompat.LayoutParams(1220, 100);
                 layoutParams.setMargins(0, 10, 10, 10); // set the top margin to 20 pixels
                 editText.setLayoutParams(layoutParams);
+
+                // Set the hint, input type, padding, text alignment, and text color for the EditText view
                 editText.setHint("Location");
                 editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
                 editText.setPadding(100, 2, 100, 2);
@@ -127,19 +157,22 @@ public class AddLocationActivity extends AppCompatActivity {
                 editText.getGravity();
                 editText.setBackgroundColor(Color.parseColor("#FFFFFF"));
 
+                // Show a toast message to indicate that a new location field has been added
                 Toast.makeText(AddLocationActivity.this,"New Location field added", Toast.LENGTH_LONG).show();
 
-                // delete feature
-
+                // Set up delete and add icons for the EditText view
                 Drawable deleteIcon = ContextCompat.getDrawable(AddLocationActivity.this, R.drawable.baseline_remove_24);
                 deleteIcon.setBounds(0, 0, 100, 50);
                 Drawable AddIcon = ContextCompat.getDrawable(AddLocationActivity.this, R.drawable.baseline_add_task_24);
                 AddIcon.setBounds(0, 0, 90, 50);
                 editText.setCompoundDrawables(deleteIcon, null, AddIcon, null);
 
+                // Set up touch listener for the EditText view
                 editText.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
+
+                        // Calculate the positions and sizes of the delete and add icons
                         int viewWidth = v.getWidth();
                         int iconWidth = deleteIcon.getIntrinsicWidth();
                         int iconLeft = editText.getPaddingLeft();
@@ -149,6 +182,7 @@ public class AddLocationActivity extends AppCompatActivity {
                         int addiconleft =  viewWidth - editText.getPaddingRight() - addiconWidth;
 
                         if (event.getAction() == MotionEvent.ACTION_UP) {
+                            // Handle click on delete icon
                             if (event.getX() >= iconLeft && event.getX() <= iconRight) {
                                 // Remove the EditText view from its parent layout
                                 if (selectedMarker!=null){
@@ -165,9 +199,12 @@ public class AddLocationActivity extends AppCompatActivity {
                                 }
                                 return true;
                             }
+
+                            // Handle click on add icon
                             if (event.getX() >= addiconleft && event.getX() <= addiconRight) {
-                                // Remove the EditText view from its parent layout
+                                // Get the location name from the EditText view
                                 Location = editText.getText().toString();
+                                // Get the map fragment and add a marker for the location
                                 SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapFragment);
                                 mapFragment.getMapAsync(new OnMapReadyCallback() {
                                     @Override
@@ -180,20 +217,24 @@ public class AddLocationActivity extends AppCompatActivity {
                                         Geocoder geocoder = new Geocoder(AddLocationActivity.this);
                                         try {
                                             List<Address> addresses = geocoder.getFromLocationName(Location, 1);
+                                            // Check if the location is not found
                                             if (addresses.size() == 0) {
                                                 ErrorView.setVisibility(View.VISIBLE);
                                                 ErrorView.setText("No such Location Found");
                                             }
+                                            // If the location is found
                                             if (addresses.size() > 0) {
+                                                // Geocode the entered location and country names
                                                 List<Address> particularlocations = geocoder.getFromLocationName(Location, 1);
                                                 Address address = particularlocations.get(0);
                                                 List<Address> countryAddresses = geocoder.getFromLocationName(country, 1);
                                                 Address countryAddress = countryAddresses.get(0);
+                                                // Check if the entered location and country are in the same country
                                                 if (countryAddress.getCountryName().equalsIgnoreCase(address.getCountryName())) {
+                                                    // Hide the error view
                                                     ErrorView.setVisibility(View.GONE);
+                                                    // Get the latitude and longitude of the entered location
                                                     LatLng location = new LatLng(address.getLatitude(), address.getLongitude());
-
-
                                                     // Move the camera to the desired location and zoom level
                                                     float zoomLevel = 12f;
                                                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel));
@@ -204,27 +245,34 @@ public class AddLocationActivity extends AppCompatActivity {
                                                             .title(address.getLocality())
                                                             .snippet(address.getAdminArea());
                                                     googleMap.addMarker(markerOptions);
+                                                    // Add the entered location to the list of locations
                                                     locations.add(Location);
+                                                    // Show a toast message to indicate that the location has been added to the map
                                                     Toast.makeText(AddLocationActivity.this,"Location added on map", Toast.LENGTH_LONG).show();
+                                                    // Increase the number of locations added
                                                     numberOfLocations++;
+                                                    // Hide the error view
                                                     ErrorView.setVisibility(View.GONE);
 
+                                                    // Set a listener for when a marker is clicked on the map
                                                     googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                                         @Override
                                                         public boolean onMarkerClick(@NonNull Marker marker) {
-
+                                                            // Store the clicked marker in a variable
                                                             selectedMarker = marker;
                                                             return  true;
                                                         }
                                                     });
                                                 }
                                                 else{
+                                                    // Show an error message if the entered location and country are not in the same country
                                                     ErrorView.setVisibility(View.VISIBLE);
                                                     ErrorView.setText("The location must exist in the country.");
                                                 }
 
                                             }
                                         } catch (IOException e) {
+                                            // Handle any errors that may occur during geocoding
                                             e.printStackTrace();
                                             ErrorView.setVisibility(View.VISIBLE);
                                             ErrorView.setText("Please Enter Location");
@@ -246,22 +294,26 @@ public class AddLocationActivity extends AppCompatActivity {
             }
         });
 
-
+        // Set up bottom navigation bar
         NavigationBarView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 switch (id) {
+                    // If "Home" button is clicked, start HomePageActivity
                     case R.id.nav_home:
                         // Handle click on "Home" button
                         Intent intent = new Intent(AddLocationActivity.this, HomePageActivity.class);
                         startActivity(intent);
                         return true;
+                    // If "Journeys" button is clicked, start AllDaysActivity and pass number of days as extra
                     case R.id.nav_journeys:
                         // Handle click on "Journeys" button
                         Toast.makeText(AddLocationActivity.this,"Click Done Adding to Proceed", Toast.LENGTH_LONG).show();
                         return true;
+
+                    // Default case
                     default:
                         return false;
                 }
