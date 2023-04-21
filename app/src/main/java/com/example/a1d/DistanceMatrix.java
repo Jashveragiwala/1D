@@ -129,7 +129,7 @@ public class DistanceMatrix {
         Request request = new Request.Builder()
                 .url("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" +
                         origins + "&destinations=" + destinations + "&mode=driving&language=en-EN&" +
-                        "key=AIzaSyA33nOEMpoyqOmg32p0znGLy3JjYGldspE")
+                        "key=YOUR_API_KEY")
                 .method("GET", null)
                 .build();
 

@@ -126,8 +126,10 @@ import java.util.List;
                     }
                     // Create a new GeoApiContext object with the Google Maps API key
                     GeoApiContext context = new GeoApiContext.Builder()
-                            .apiKey("AIzaSyA33nOEMpoyqOmg32p0znGLy3JjYGldspE")
+                            .apiKey("YOUR_API_KEY")
                             .build();
+
+                    // API KEY removed for security reasons
 
                     // Create a new DirectionsApiRequest object
                     DirectionsApiRequest req = DirectionsApi.newRequest(context);
