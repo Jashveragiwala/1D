@@ -322,28 +322,44 @@ public class AddLocationActivity extends AppCompatActivity {
 
     }
 
+    // This method takes in parameters including number of days for the trip, the starting location,
+    // a string of locations, and a callback interface to handle the paths
     void getPath(int numberOfDays, String startLocation, String locationsString, PathCallback callback) {
+        // Creates a new ExecutorService object with a single thread
         ExecutorService executor = Executors.newSingleThreadExecutor();
+        // Creates a new Handler object with the Looper from the main thread
         final Handler handler = new Handler(Looper.getMainLooper());
 
+        // Executes a new Runnable in the executor
         executor.execute(new Runnable() {
-
+            // Overrides the run() method of the Runnable interface
             @Override
             public void run() {
+                // Concatenates the startLocation with the locationsString using a specific format
                 String locationsStringNew = startLocation + "%7C%" + locationsString;
 
+                // Initializes an ArrayList of ArrayLists of Strings to hold all the possible paths
                 ArrayList<ArrayList<String>> allPaths = null;
 
+                // Creates a new Trip object with the parameters
                 Trip t = new Trip(numberOfDays, startLocation, locationsStringNew);
+
+                // Calls the setCluster() method of the Trip object
                 t.setCluster();
                 try {
+                    // Calls the setItinerary() method of the Trip object
                     t.setItinerary();
+                    // Gets all the possible paths returned by the getItinerary() method of the Trip object
                     allPaths = t.getItinerary();
                 } catch (Exception e) {
+                    // Prints the stack trace if an exception occurs
                     e.printStackTrace();
                 }
 
+                // Initializes a new ArrayList of ArrayLists of Strings to hold the final paths
                 ArrayList<ArrayList<String>> finalAllPaths = allPaths;
+
+                // Posts a new Runnable to the Handler object to call the onPathsReady() method of the callback interface
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
