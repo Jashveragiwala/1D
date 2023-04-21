@@ -13,11 +13,12 @@ public class StorePaths {
     // Get the singleton instance of the StorePaths class the singleton instance of the StorePaths class
     public static StorePaths getInstance() {
         // If instance is null, create a new one
-        if (instance == null){
+        if (instance == null) {
             instance = new StorePaths();
         }
         return instance;
     }
+
     // Get the paths that have been generated the paths that have been generated
     public ArrayList<ArrayList<String>> getPaths() {
         return paths;

@@ -12,9 +12,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-// This class represents a Distance Matrix and provides methods to retrieve distances between locations using Google Maps Distance Matrix API.
 // The Distance Matrix API allows calculating travel distance and time for a matrix of origins and destinations.
-// This class uses OkHttpClient to send GET requests to the Google Maps API, parse the JSON responses, and return the distance matrix in a two-dimensional array or a HashMap of HashMaps.
+
+// This class uses OkHttpClient to send GET requests to the Google Maps API, parse the JSON responses,
+// and returns the distance matrix in a two-dimensional array or a HashMap of HashMaps.
 public class DistanceMatrix {
 
     public int originArrLen = 0; // the length of the array of origins
@@ -24,18 +25,14 @@ public class DistanceMatrix {
         return indexes;
     }
 
-    // This method takes a string of locations and returns a two-dimensional array of distances between them using the Google Maps Distance Matrix API.
-    // The method first splits the string into an array of origins, puts them in a HashMap with an empty distance array, and saves their indexes in another HashMap.
-    // Then, it sends a GET request to the Distance Matrix API, receives a JSON response, and extracts the distance matrix.
-    // The distance matrix is then saved in a two-dimensional array and returned.
-    // If any error occurs, the method throws an Exception.
     public double[][] getDistances(String locationsString) throws Exception {
         HashMap<String, double[]> locations = new HashMap<>(); // a HashMap to store the locations and their distances
 
         String origins = locationsString;
         String destinations = origins;
 
-        String originArr[] = origins.split("%7C%"); // split the string into an array of origins
+        String originArr[] = origins.split("%7C%");
+        // split the string into an array of origins, the string from API call comes with %7C% in it
         originArrLen = originArr.length;
 
         // put the origins in the locations HashMap with an empty distance array and save their indexes in the indexes HashMap
@@ -47,7 +44,7 @@ public class DistanceMatrix {
             x++;
         }
 
-        double[][] distanceMatrix = new double[originArrLen][originArrLen]; // initialize the distance matrix
+        double[][] distanceMatrix = new double[originArrLen][originArrLen];
 
         OkHttpClient client = new OkHttpClient().newBuilder().build(); // create a new OkHttpClient instance
         MediaType mediaType = MediaType.parse("text/plain");
@@ -55,11 +52,12 @@ public class DistanceMatrix {
         Request request = new Request.Builder()
                 .url("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" +
                         origins + "&destinations=" + destinations + "&mode=driving&language=en-EN&" +
-                        "key=AIzaSyA33nOEMpoyqOmg32p0znGLy3JjYGldspE") // create a new GET request to the Distance Matrix API with the origins and destinations as parameters and the API key
+                        "key=AIzaSyA33nOEMpoyqOmg32p0znGLy3JjYGldspE")
+                // create a new GET request to the Distance Matrix API with the origins and destinations as parameters and the API key
                 .method("GET", null)
                 .build();
 
-        Response response = client.newCall(request).execute(); // execute the request
+        Response response = client.newCall(request).execute();
 
         String output = response.body().string(); // get the response body as a string
 
@@ -97,6 +95,7 @@ public class DistanceMatrix {
 
 
             }
+            // Close the response and evict all connections
             response.close();
             client.connectionPool().evictAll();
         } catch (Exception e) {
@@ -106,9 +105,7 @@ public class DistanceMatrix {
         return distanceMatrix;
     }
 
-    // This method takes a location string as input and returns a matrix of distances between all the locations
-    // The distance matrix is a 2D array of doubles with dimensions originArrLen x originArrLen
-    // The distance between each location is obtained by making an API call to the Google Maps Distance Matrix API
+
     public HashMap<String,HashMap> getDistancesClusters(String locationString) throws Exception {
         // Initialize a HashMap to store the locations and their corresponding distances
         HashMap<String, HashMap> locations = new HashMap<>();
@@ -132,7 +129,7 @@ public class DistanceMatrix {
         Request request = new Request.Builder()
                 .url("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" +
                         origins + "&destinations=" + destinations + "&mode=driving&language=en-EN&" +
-                        "key=AIzaSyD03pQpPpanpGgrJyTfCagPxTLAya8pQws")
+                        "key=AIzaSyA33nOEMpoyqOmg32p0znGLy3JjYGldspE")
                 .method("GET", null)
                 .build();
 
@@ -167,7 +164,6 @@ public class DistanceMatrix {
                 Object distanceText = distance.get("text");
                 Object durationText = duration.get("text");
 
-                // Extract the double value from the distanceText object and add it to the locArr array
                 Double value = Double.parseDouble(((String) distanceText).replaceAll("[^0-9.]", ""));
                 // If the value is 1.0, set the corresponding distance in the distanceMatrix to 0.0
                 // This is because the distance from a location to itself is always 0
@@ -179,7 +175,7 @@ public class DistanceMatrix {
             locations.put(originArr[i], loc);
         }
 
-        // Close the response and evict all connections from the
+        // Close the response and evict all connections
         response.close();
         client.connectionPool().evictAll();
         return locations;

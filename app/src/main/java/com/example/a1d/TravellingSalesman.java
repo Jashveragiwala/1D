@@ -2,24 +2,22 @@ package com.example.a1d;
 
 import java.util.*;
 
-// Implements the TravellingSalesmanInterface to solve the travelling salesman problem.
-//The solve method takes a distance matrix and the index of the origin, and returns the best path as an array of indices.
+
 public class TravellingSalesman implements TravellingSalesmanInterface {
 
     private int[] bestPath; // the best path found so far
     private double bestCost = Double.POSITIVE_INFINITY; // the cost of the best path found so far
 
-    // Returns the best path found so far in an array
     public int[] getBestPath() {
         return bestPath;
     }
 
-    // Returns the cost of the best path found so far.
     public double getBestCost() {
         return bestCost;
     }
 
     // Solves the travelling salesman problem given a distance matrix and the index of the origin city.
+    // Interface method override call
     @Override
     public int[] solve(double[][] distances, int origin) {
         int n = distances.length;
@@ -31,11 +29,9 @@ public class TravellingSalesman implements TravellingSalesmanInterface {
         return bestPath;
     }
 
-    // Recursively generates all permutations of the path starting from the given start index.
-    // Calculates the cost of each permutation and updates the best path and best cost if a new minimum cost is found.
+    // Generates all permutations
     private void permute(int[] path, int start, int end, double[][] distances, int origin) {
         if (start == end) {
-            // we have generated a new permutation
             double cost = calculateCost(path, distances, origin);  // calculate the cost of the permutation
             if (cost < bestCost) {
                 // update the best path and best cost if the new cost is smaller

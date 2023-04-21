@@ -3,20 +3,14 @@ package com.example.a1d;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * A class representing a day trip.
- */
 public class DayTrip {
 
-    // The locations to visit in the day trip
     private String locations;
 
-    //locations a string of comma-separated locations
     public String getLocations() {
         return locations;
     }
 
-    //a string of comma-separated locations
     DayTrip(String locations) {
         this.locations = locations;
     }
@@ -30,7 +24,7 @@ public class DayTrip {
         try {
             double[][] distanceMatrix = DM.getDistances(getLocations());
 
-            // Use Interface instead of Class, if TravellingSalesman Implementation changed later on
+            // Using Interface instead of Class, if TravellingSalesman Implementation changed later on
             // Find the shortest path through the locations using the TravellingSalesman algorithm
             TravellingSalesmanInterface ts = new TravellingSalesman();
             int[] path = ts.solve(distanceMatrix, 0);
