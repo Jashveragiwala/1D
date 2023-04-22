@@ -53,9 +53,12 @@ public class DistanceMatrix {
                 .url("https://maps.googleapis.com/maps/api/distancematrix/json?origins=" +
                         origins + "&destinations=" + destinations + "&mode=driving&language=en-EN&" +
                         "key=YOUR_API_KEY")
-                // create a new GET request to the Distance Matrix API with the origins and destinations as parameters and the API key
                 .method("GET", null)
                 .build();
+
+        // API KEY removed for security reasons
+        // create a new GET request to the Distance Matrix API with the origins and destinations as parameters and the API key
+
 
         Response response = client.newCall(request).execute();
 
@@ -132,6 +135,8 @@ public class DistanceMatrix {
                         "key=YOUR_API_KEY")
                 .method("GET", null)
                 .build();
+
+        // API KEY removed for security reasons
 
         // Execute the API call and get the response
         Response response = client.newCall(request).execute();
