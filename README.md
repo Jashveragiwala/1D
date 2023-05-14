@@ -5,11 +5,11 @@ fastest path to visit them. Users can input their desired locations and trip dur
 travel experience.
 
 ## App Images
-<img src="https://github.com/Jashveragiwala/Navit/assets/59217041/7decd0c9-9361-40eb-be10-21bc29df3143" height="500">
-<img src="https://github.com/Jashveragiwala/Navit/assets/59217041/b83e08b9-820a-4d7e-845a-5efe1996dc08" height="500">
-<img src="https://github.com/Jashveragiwala/Navit/assets/59217041/6c912ca4-770b-4df4-9345-c0c77e7ca710" height="500">
-<img src="https://github.com/Jashveragiwala/Navit/assets/59217041/b219ce0d-f5f4-44bf-8f9f-4a6574172f72" height="500">
-<img src="https://github.com/Jashveragiwala/Navit/assets/59217041/3c25f527-f5b0-44b3-a5a0-5021d05b1809" height="500">
+<img src="https://github.com/Jashveragiwala/Navit/assets/59217041/13c6a417-5516-4210-8177-af2e5049cc2c" height="500">
+<img src="https://github.com/Jashveragiwala/Navit/assets/59217041/c3ade6a0-2096-41c1-9ef2-b3aa6e6800ae" height="500">
+<img src="https://github.com/Jashveragiwala/Navit/assets/59217041/03b79cc9-db12-488f-82d8-c64820caa79e" height="500">
+<img src="https://github.com/Jashveragiwala/Navit/assets/59217041/17d1e09c-60d8-416b-9efe-ef0eb0013b2e" height="500">
+<img src="https://github.com/Jashveragiwala/Navit/assets/59217041/0542dff7-d589-4b21-a555-977fc7c34e2d" height="500">
 
 <br/><br/>
 The API key has been hidden for security reasons.
